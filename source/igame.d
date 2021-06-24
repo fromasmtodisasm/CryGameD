@@ -5,13 +5,11 @@ import isystem;
 public extern (C++){
   interface IGameMods{}
   interface IEntityClassRegistry{}
-  interface ICrySizer{}
 
   interface IPhysicsStreamer{}
   interface IPhysicsEventClient{}
   interface IXAreaMgr{}
   interface ITagPointManager{}
-  interface ICVar{}
 
   //////////////////////////////////////////////////////////////////////
   enum EGameCapability

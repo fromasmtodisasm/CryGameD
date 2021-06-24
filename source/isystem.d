@@ -1,17 +1,18 @@
 module isystem;
 
 version(Win32){
-  import core.sys.windows.windows;
+  public import core.sys.windows.windows;
 }
 
-import ivalidator;
-import igame;
-import ixmldom;
-import ixml;
-import cry_camera;
-import frame_profiler;
-import cry_version;
-import iinput;
+public import ivalidator;
+public import igame;
+public import ixmldom;
+public import ixml;
+public import cry_camera;
+public import frame_profiler;
+public import cry_version;
+public import iinput;
+public import iconsole;
 
 
 public extern (C++)
@@ -24,7 +25,6 @@ public extern (C++)
   interface IKeyboard{}
   interface IMouse{}
   interface IRenderer{}
-  interface IConsole{}
   interface IProcess{}
   interface I3DEngine{}
   interface ITimer{}
@@ -45,6 +45,9 @@ public extern (C++)
   interface ICryCharManager{}
   interface SFileVersion{}
   interface IDataProbe{}
+  interface ICrySizer{}
+  interface ITexPic{}
+  interface CXFont{}
 
   //////////////////////////////////////////////////////////////////////////
   enum ESystemUpdateFlags

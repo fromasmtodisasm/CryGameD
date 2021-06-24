@@ -6,6 +6,7 @@ import core.sys.windows.dll;
 import isystem;
 import igame;
 import iinput;
+import iconsole;
 
 mixin SimpleDllMain;
 
@@ -17,6 +18,13 @@ extern (C++){
     bool Init( ISystem pSystem, bool bDedicatedSrv, bool bInEditor, const char *szGameMod ){
 
       m_ISystem = pSystem;
+      IConsole con = pSystem.GetIConsole();
+
+      assert(con !is null);
+
+      //con.CreateKeyBind("System:Quit()", "q", false);
+      //con.StaticBackground(true);
+      //con.AddCommand("quit", "System:Quit()", 0, "");
       return true;
     }
 
@@ -30,7 +38,16 @@ extern (C++){
         }
         m_ISystem.Update(0,0);
 
+
+        IConsole con = m_ISystem.GetIConsole();
+        //immutable(char)* w = "r_Width";
+        //auto var = con.GetCVar(w);
+        //var.Set(1024);
+
         m_ISystem.RenderBegin();
+        con.ShowConsole(true);
+        con.Draw();
+        con.Exit("sldkfj");
 
         m_ISystem.Render();
 
