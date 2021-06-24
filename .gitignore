@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/crygame
+crygame.so
+crygame.dylib
+crygame.dll
+crygame.a
+crygame.lib
+crygame-test-*
+*.exe
+*.o
+*.obj
+*.lst

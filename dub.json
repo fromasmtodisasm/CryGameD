@@ -1,0 +1,12 @@
+{
+	"authors": [
+		"user"
+	],
+	"copyright": "Copyright © 2021, user",
+	"description": "A minimal D application.",
+	"license": "proprietary",
+	"name": "crygame",
+
+  "targetType": "dynamicLibrary"
+
+}
