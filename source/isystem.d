@@ -198,10 +198,7 @@ public extern (C++)
     bool CheckLogVerbosity(int verbosity);
 
     // returns true if this is dedicated server application
-    final bool IsDedicated()
-    {
-      return false;
-    }
+    bool IsDedicated();
 
     // return the related subsystem interface
     IGame GetIGame();

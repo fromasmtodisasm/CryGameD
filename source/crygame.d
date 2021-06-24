@@ -5,11 +5,14 @@ import core.sys.windows.dll;
 
 import isystem;
 import igame;
+import iinput;
 
 mixin SimpleDllMain;
 
 extern (C++){
   class CGame : IGame {
+
+    IInput m_IInput;
 
     bool Init( ISystem pSystem, bool bDedicatedSrv, bool bInEditor, const char *szGameMod ){
 
@@ -21,6 +24,10 @@ extern (C++){
     // Returns: false to stop the main loop
     bool Update(){
       while(true){
+        if (m_ISystem.GetIInput().KeyPressed(KeyCodes.XKEY_ESCAPE))
+        {
+          return false;
+        }
         m_ISystem.Update(0,0);
 
         m_ISystem.RenderBegin();
