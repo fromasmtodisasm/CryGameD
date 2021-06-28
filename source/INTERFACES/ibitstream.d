@@ -1,0 +1,6 @@
+module ibitstream;
+
+interface IBitStream
+{
+
+}

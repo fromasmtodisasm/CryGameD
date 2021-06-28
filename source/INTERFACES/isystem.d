@@ -1,60 +1,138 @@
 module isystem;
 
+public:
+import platform;
+import ivalidator;
+import igame;
+import ixmldom;
+import ixml;
+import cry_camera;
+import frame_profiler;
+import cry_version;
+import iinput;
+import iconsole;
+import ilog;
+import iscriptsystem;
 
-public import platform;
-public import ivalidator;
-public import igame;
-public import ixmldom;
-public import ixml;
-public import cry_camera;
-public import frame_profiler;
-public import cry_version;
-public import iinput;
-public import iconsole;
-public import ilog;
-public import iscriptsystem;
-
-
-public extern (C++)
+extern (C++)
 {
 
-  interface IEntitySystem{}
-  interface IEntity{}
-  interface ICryPak{}
-  interface IKeyboard{}
-  interface IMouse{}
-  interface IRenderer{}
-  interface IProcess{}
-  interface I3DEngine{}
-  interface ITimer{}
-  interface IAISystem{}
-  interface IFlash{}
-  interface INetwork{}
-  interface ICryFont{}
-  interface IMovieSystem{}
-  interface IPhysicalWorld{}
-  interface IMemoryManager{}
-  interface ISoundSystem{}
-  interface IMusicSystem{}
+  interface IEntitySystem
+  {
+  }
+
+  interface IEntity
+  {
+  }
+
+  interface ICryPak
+  {
+  }
+
+  interface IKeyboard
+  {
+  }
+
+  interface IMouse
+  {
+  }
+
+  interface IRenderer
+  {
+  }
+
+  interface IProcess
+  {
+  }
+
+  interface I3DEngine
+  {
+  }
+
+  interface ITimer
+  {
+  }
+
+  interface IAISystem
+  {
+  }
+
+  interface IFlash
+  {
+  }
+
+  interface INetwork
+  {
+  }
+
+  interface ICryFont
+  {
+  }
+
+  interface IMovieSystem
+  {
+  }
+
+  interface IPhysicalWorld
+  {
+  }
+
+  interface IMemoryManager
+  {
+  }
+
+  interface ISoundSystem
+  {
+  }
+
+  interface IMusicSystem
+  {
+  }
   //interface XDOM::IXMLDOMDocument{}
-  interface IFrameProfileSystem{}
-  interface FrameProfiler{}
-  interface IStreamEngine{}
-  interface ICryCharManager{}
-  interface SFileVersion{}
-  interface IDataProbe{}
-  interface ICrySizer{}
-  interface ITexPic{}
-  interface CXFont{}
+  interface IFrameProfileSystem
+  {
+  }
+
+  interface FrameProfiler
+  {
+  }
+
+  interface IStreamEngine
+  {
+  }
+
+  interface ICryCharManager
+  {
+  }
+
+  interface SFileVersion
+  {
+  }
+
+  interface IDataProbe
+  {
+  }
+
+  interface ICrySizer
+  {
+  }
+
+  interface ITexPic
+  {
+  }
+
+  interface CXFont
+  {
+  }
 
   //////////////////////////////////////////////////////////////////////////
   enum ESystemUpdateFlags
   {
-    ESYSUPDATE_IGNORE_AI			= 0x0001,
+    ESYSUPDATE_IGNORE_AI = 0x0001,
     ESYSUPDATE_IGNORE_PHYSICS = 0x0002,
     // Special update mode for editor.
-    ESYSUPDATE_EDITOR					=	0x0004,
-    ESYSUPDATE_MULTIPLAYER		= 0x0008
+    ESYSUPDATE_EDITOR = 0x0004,
+    ESYSUPDATE_MULTIPLAYER = 0x0008
   };
 
   //////////////////////////////////////////////////////////////////////////
@@ -73,53 +151,52 @@ public extern (C++)
     /** Signals to User that engine error occured.
         @return true to Halt execution or false to ignore this error.
     */
-    bool OnError( const char *szErrorString );
+    bool OnError(const char * szErrorString);
     /** If working in Editor environment notify user that engine want to Save current document.
         This happens if critical error have occured and engine gives a user way to save data and not lose it
         due to crash.
     */
     void OnSaveDocument();
-    
+
     /** Notify user that system wants to switch out of current process.
         (For ex. Called when pressing ESC in game mode to go to Menu).
     */
     void OnProcessSwitch();
   };
 
-
   //////////////////////////////////////////////////////////////////////////
   // Structure passed to Init method of ISystem interface.
   struct SSystemInitParams
   {
-    void *hInstance;											//
-    void *hWnd;														//
-    char[512] szSystemCmdLine;						// command line, used to execute the early commands e.g. -DEVMODE "g_gametype ASSAULT"
-    ISystemUserCallback *pUserCallback;		//
-    ILog *pLog;														// You can specify your own ILog to be used by System.
-    IValidator *pValidator;								// You can specify different validator object to use by System.
-    const char* sLogFileName;							// File name to use for log.
-    bool bEditor;													// When runing in Editor mode.
-    bool bPreview;												// When runing in Preview mode (Minimal initialization).
-    bool bTestMode;												// When runing in Automated testing mode.
-    bool bDedicatedServer;								// When runing a dedicated server.
-    ISystem *pSystem;											// Pointer to existing ISystem interface, it will be reused if not NULL.
+    void * hInstance; //
+    void * hWnd; //
+    char[512] szSystemCmdLine; // command line, used to execute the early commands e.g. -DEVMODE "g_gametype ASSAULT"
+    ISystemUserCallback * pUserCallback; //
+    ILog * pLog; // You can specify your own ILog to be used by System.
+    IValidator * pValidator; // You can specify different validator object to use by System.
+    const char * sLogFileName; // File name to use for log.
+    bool bEditor; // When runing in Editor mode.
+    bool bPreview; // When runing in Preview mode (Minimal initialization).
+    bool bTestMode; // When runing in Automated testing mode.
+    bool bDedicatedServer; // When runing a dedicated server.
+    ISystem * pSystem; // Pointer to existing ISystem interface, it will be reused if not NULL.
 
-  version(Linux)
-  {
-    //void (*pCheckFunc)(void*);							// authentication function (must be set).
-  }else
-  {
-    void *pCheckFunc;											// authentication function (must be set).
-  }
+    version (Linux)
+    {
+      //void (*pCheckFunc)(void*);							// authentication function (must be set).
+    }
+    else
+    {
+      void * pCheckFunc; // authentication function (must be set).
+    }
 
   };
-
 
   //////////////////////////////////////////////////////////////////////////
   // Structure passed to CreateGame method of ISystem interface.
   struct SGameInitParams
   {
-    const char* sGameDLL; // Name of Game DLL. (Win32 Only)
+    const char * sGameDLL; // Name of Game DLL. (Win32 Only)
     IGame pGame; // Pointer to already created game interface.
     bool bDedicatedServer; // When runing a dedicated server.
     char[256] szGameCmdLine; // command line, used to execute the console commands after game creation e.g. -DEVMODE "g_gametype ASSAULT"
@@ -160,7 +237,7 @@ public extern (C++)
     void RenderStatistics();
 
     // Retrieve the name of the user currently logged in to the computer
-    const char* GetUserName();
+    const char * GetUserName();
 
     // Gets current supported CPU features flags. (CPUF_SSE, CPUF_SSE2, CPUF_3DNOW, CPUF_MMX)
     int GetCPUFlags();
@@ -193,7 +270,7 @@ public extern (C++)
 
     // Report warning to current Validator object.
     // Not terminates execution.
-    void Warning(EValidatorModule _module , EValidatorSeverity severity, int flags,
+    void Warning(EValidatorModule _module, EValidatorSeverity severity, int flags,
         const char * file, const char * format, ...);
     // Compare specified verbosity level to the one currently set.
     bool CheckLogVerbosity(int verbosity);
@@ -243,22 +320,22 @@ public extern (C++)
     // IXmlNode interface.
     //////////////////////////////////////////////////////////////////////////
     // Creates new xml node.
-    XmlNodeRef CreateXmlNode( const char *sNodeName);
+    XmlNodeRef CreateXmlNode(const char * sNodeName);
     // Load xml file, return 0 if load failed.
-    XmlNodeRef LoadXmlFile( const char *sFilename );
+    XmlNodeRef LoadXmlFile(const char * sFilename);
     // Load xml from string, return 0 if load failed.
-    XmlNodeRef LoadXmlFromString( const char *sXmlString );
+    XmlNodeRef LoadXmlFromString(const char * sXmlString);
 
     void SetViewCamera(ref CCamera Camera);
     ref CCamera GetViewCamera();
 
     void CreateEntityScriptBinding(IEntity pEntity);
     // When ignore update sets to true, system will ignore and updates and render calls.
-    void IgnoreUpdates( bool bIgnore );
+    void IgnoreUpdates(bool bIgnore);
 
     // Set rate of Garbage Collection for script system.
     // @param fRate in seconds
-    void SetGCFrequency( const float fRate );
+    void SetGCFrequency(const float fRate);
 
     /* Set the active process
       @param process a pointer to a class that implement the IProcess interface
@@ -269,24 +346,24 @@ public extern (C++)
     */
     IProcess GetIProcess();
 
-  version(Win32)
-  {
-    IRenderer CreateRenderer(bool fullscreen, void* hinst, void* hWndAttach);
-  }
+    version (Win32)
+    {
+      IRenderer CreateRenderer(bool fullscreen, void * hinst, void * hWndAttach);
+    }
 
     // Returns true if system running in Test mode.
     bool IsTestMode() const;
-  
-    void ShowDebugger(const char *pszSourceFile, int iLine, const char *pszReason);
-    
+
+    void ShowDebugger(const char * pszSourceFile, int iLine, const char * pszReason);
+
     //////////////////////////////////////////////////////////////////////////
     // Frame profiler functions
-    void SetFrameProfiler(bool on, bool display, char *prefix);
+    void SetFrameProfiler(bool on, bool display, char * prefix);
 
     // Starts section profiling.
-    void StartProfilerSection( CFrameProfilerSection *pProfileSection );
+    void StartProfilerSection(CFrameProfilerSection * pProfileSection);
     // Stops section profiling.
-    void EndProfilerSection( CFrameProfilerSection *pProfileSection );
+    void EndProfilerSection(CFrameProfilerSection * pProfileSection);
 
     //////////////////////////////////////////////////////////////////////////
     // VTune Profiling interface.
@@ -296,7 +373,7 @@ public extern (C++)
     void VTunePause();
     //////////////////////////////////////////////////////////////////////////
 
-    void Deltree(const char *szFolder, bool bRecurse);
+    void Deltree(const char * szFolder, bool bRecurse);
 
     //////////////////////////////////////////////////////////////////////////
     // File version.
@@ -304,11 +381,11 @@ public extern (C++)
 
     const ref SFileVersion GetFileVersion();
     const ref SFileVersion GetProductVersion();
-    
+
     // Compressed file read & write
-    bool WriteCompressedFile(char *filename, void *data, uint bitlen);
-    uint ReadCompressedFile(char *filename, void *data, uint maxbitlen);
-    uint GetCompressedFileSize(char *filename);
+    bool WriteCompressedFile(char * filename, void * data, uint bitlen);
+    uint ReadCompressedFile(char * filename, void * data, uint maxbitlen);
+    uint GetCompressedFileSize(char * filename);
 
     // Sample:  char str[256];	bool bRet=GetSSFileInfo("C:\\mastercd\\materials\\compound_indoor.xml",str,256);
     // get info about the last SourceSafe action for a specifed file (Name,Comment,Date)
@@ -316,10 +393,10 @@ public extern (C++)
     // @param outszInfo outszInfo!, [0..indwBufferSize-1]
     // @param indwBufferSize >0
     // @return true=success, false otherwise (output parameter is set to empty strings)
-    bool GetSSFileInfo( const char *inszFileName, char *outszInfo, const DWORD indwBufferSize );
+    bool GetSSFileInfo(const char * inszFileName, char * outszInfo, const DWORD indwBufferSize);
 
     // Retrieve IDataProbe interface.
-    IDataProbe* GetIDataProbe();
+    IDataProbe * GetIDataProbe();
     //////////////////////////////////////////////////////////////////////////
     // Configuration.
     //////////////////////////////////////////////////////////////////////////
@@ -333,4 +410,27 @@ public extern (C++)
 
   }
 
+  //////////////////////////////////////////////////////////////////////////
+  // CrySystem DLL Exports.
+  //////////////////////////////////////////////////////////////////////////
+  // Get the system interface (must be defined locally in each module)
+  ISystem GetISystem();
+
+  // interface of the DLL
+  extern (C)
+  {
+    export ISystem CreateSystemInterface(ref SSystemInitParams initParams);
+  }
+  //////////////////////////////////////////////////////////////////////////
+  // Logs important data that must be printed regardless verbosity.
+  void CryLogAlways(const char * format, ...)
+  {
+    if (GetISystem())
+    {
+      va_list args;
+      va_start(args, format);
+      GetISystem().GetILog().LogV(ILog.ELogType.eAlways, format, args);
+      va_end(args);
+    }
+  }
 }

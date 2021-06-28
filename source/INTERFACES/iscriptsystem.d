@@ -275,7 +275,7 @@ extern (C++)
 
 		//!debug functions
 		//##@{
-		void EnableDebugger(IScriptDebugSink* pDebugSink);
+		void EnableDebugger(IScriptDebugSink pDebugSink);
 		IScriptObject* GetBreakPoints();
 		HBREAKPOINT AddBreakPoint(const char* sFile, int nLineNumber);
 		IScriptObject* GetLocalVariables(int nLevel = 0);
@@ -330,21 +330,21 @@ extern (C++)
 	};
 
 	// Returns literal representation of the type value
-	char* ScriptVarTypeAsCStr(ScriptVarType t)
+	const (char)* ScriptVarTypeAsCStr(ScriptVarType t)
 	{
 		switch (t)
 		{
-		case svtNull:
+		case ScriptVarType.svtNull:
 			return "Null";
-		case svtString:
+		case ScriptVarType.svtString:
 			return "String";
-		case svtNumber:
+		case ScriptVarType.svtNumber:
 			return "Number";
-		case svtFunction:
+		case ScriptVarType.svtFunction:
 			return "Function";
-		case svtObject:
+		case ScriptVarType.svtObject:
 			return "Object";
-		case svtUserData:
+		case ScriptVarType.svtUserData:
 			return "UserData";
 		default:
 			return "#Unknown";

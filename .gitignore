@@ -13,3 +13,6 @@ crygame-test-*
 *.o
 *.obj
 *.lst
+.vs/*
+build/*
+*.sln

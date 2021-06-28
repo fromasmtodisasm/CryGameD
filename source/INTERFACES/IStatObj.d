@@ -1,0 +1,6 @@
+module IStatObj;
+
+interface IStatObj
+{
+
+}

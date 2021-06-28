@@ -408,11 +408,11 @@ extern (C++)
 
 	version (_XBOX)
 	{
-		const auto MAX_BINDS_PER_ACTION = 3;
+		enum MAX_BINDS_PER_ACTION = 3;
 	}
 	else
 	{
-		const auto MAX_BINDS_PER_ACTION = 2;
+		enum MAX_BINDS_PER_ACTION = 2;
 
 	}
 	//////////////////////////////////////////////////////////////////////

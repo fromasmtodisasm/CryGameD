@@ -1,12 +1,48 @@
 {
-	"authors": [
-		"user"
-	],
-	"copyright": "Copyright © 2021, user",
-	"description": "A minimal D application.",
-	"license": "proprietary",
-	"name": "crygame",
-
+  "authors": [
+    "user"
+  ],
+  "configurations": [
+    {
+      "name": "Debug",
+      "versions": [
+        "NOT_USE_CRY_MEMORY_MANAGER",
+        "_DEBUG",
+        "WIN32",
+        "_WINDOWS",
+        "_USRDLL"
+      ]
+    },
+    {
+      "name": "Profile",
+      "versions": [
+        "NDEBUG",
+        "USE_GAME_DLL",
+        "WIN32",
+        "_WINDOWS",
+        "_USRDLL"
+      ]
+    },
+    {
+      "name": "Release",
+      "versions": [
+        "NOT_USE_CRY_MEMORY_MANAGER",
+        "_RELEASE",
+        "NDEBUG",
+        "USE_GAME_DLL",
+        "WIN32",
+        "_WINDOWS",
+        "_USRDLL"
+      ]
+    }
+  ],
+  "copyright": "Copyright © 2021, user",
+  "description": "A minimal D application.",
+  "importPaths": [
+    "source/interfaces"
+  ],
+  "license": "proprietary",
+  "name": "crygame",
+  "targetName": "CryGame.dll",
   "targetType": "dynamicLibrary"
-
 }

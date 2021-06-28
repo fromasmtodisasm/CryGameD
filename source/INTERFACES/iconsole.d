@@ -24,28 +24,28 @@ extern (C++)
 	//class CXFont;
 	//interface ICVar;
 
-	const auto CVAR_INT = 1;
-	const auto CVAR_FLOAT = 2;
-	const auto CVAR_STRING = 3;
+	enum CVAR_INT = 1;
+	enum CVAR_FLOAT = 2;
+	enum CVAR_STRING = 3;
 
 	// if this flag is set during registering a console variable, and the variable exists,
 	// then the variable will store its value in memory given by src
-	const auto CVF_CHANGE_SOURCE = (1u << 16);
+	enum CVF_CHANGE_SOURCE = (1u << 16);
 
-	const auto VF_SERVER_ONCE = 0x00000001;
-	const auto VF_CHEAT = 0x00000002;
-	const auto VF_USERINFO = 0x00000004;
-	const auto VF_MODIFIED = 0x00000008;
-	const auto VF_SERVER = 0x00000010;
-	const auto VF_NONOTIFY = 0x00000020;
-	const auto VF_NOCHANGELEV = 0x00000040;
-	const auto VF_REQUIRE_NET_SYNC = 0x00000080;
-	const auto VF_DUMPTODISK = 0x00000100;
-	const auto VF_SAVEGAME = 0x00000200;
-	const auto VF_NOHELP = 0x00000400;
-	const auto VF_READONLY = 0x00000800;
-	const auto VF_REQUIRE_LEVEL_RELOAD = 0x00001000;
-	const auto VF_REQUIRE_APP_RESTART = 0x00002000;
+	enum VF_SERVER_ONCE = 0x00000001;
+	enum VF_CHEAT = 0x00000002;
+	enum VF_USERINFO = 0x00000004;
+	enum VF_MODIFIED = 0x00000008;
+	enum VF_SERVER = 0x00000010;
+	enum VF_NONOTIFY = 0x00000020;
+	enum VF_NOCHANGELEV = 0x00000040;
+	enum VF_REQUIRE_NET_SYNC = 0x00000080;
+	enum VF_DUMPTODISK = 0x00000100;
+	enum VF_SAVEGAME = 0x00000200;
+	enum VF_NOHELP = 0x00000400;
+	enum VF_READONLY = 0x00000800;
+	enum VF_REQUIRE_LEVEL_RELOAD = 0x00001000;
+	enum VF_REQUIRE_APP_RESTART = 0x00002000;
 
 	//////////////////////////////////////////////////////////////////////
 	interface ICVarDumpSink
@@ -125,12 +125,12 @@ extern (C++)
 		/*! add output sink (clases which are interested in the output) - order is not guaranteed
 		@param inpSink must not be 0 and is not allowed to be added twice
 	*/
-		void AddOutputPrintSink(IOutputPrintSink* inpSink);
+		void AddOutputPrintSink(IOutputPrintSink inpSink);
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/*! remove output sink (clases which are interested in the output) - order is not guaranteed
 		@param inpSink must not be 0 and has to be added before
 	*/
-		void RemoveOutputPrintSink(IOutputPrintSink* inpSink);
+		void RemoveOutputPrintSink(IOutputPrintSink inpSink);
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/*! show/hide the console

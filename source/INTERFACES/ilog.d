@@ -1,6 +1,8 @@
-module source.ilog;
+module ilog;
 
-import core.stdc.stdio : FILE;
+import core.stdc.stdio;
+
+import iminilog;
 
 version (Linux)
 {
@@ -46,7 +48,7 @@ const auto LOG_TO_FILE_AND_CONSOLE = (LOG_TO_FILE | LOG_TO_CONSOLE);
 //      with global_verbosity_level 1 this is not printed but with global_verbosity_level 2 or higher it is
 
 ////////////////////////////////////////////////////////////////////////////
-interface ILog// : public IMiniLog
+interface ILog : IMiniLog
 {
 	void Release();
 

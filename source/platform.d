@@ -1,5 +1,7 @@
 module platform;
 
+public import core.stdc.stdarg;
+
 version(Windows){
   public import core.sys.windows.windows;
 }
@@ -10,7 +12,7 @@ version (Windows)
 	{
 		asm
 		{
-			int3;
+			int 3;
 		}
 	}
 }
