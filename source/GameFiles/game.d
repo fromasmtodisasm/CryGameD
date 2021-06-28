@@ -42,12 +42,11 @@ public extern (C++)
       gISystem = m_ISystem = pSystem;
       m_pLog = pSystem.GetILog();
       m_pScriptSystem = pSystem.GetIScriptSystem();
-      m_pScriptDebugger = new CScriptDebugSink(m_pScriptSystem);
-      m_pScriptSystem.EnableDebugger(m_pScriptDebugger);
+      //m_pScriptDebugger = new CScriptDebugSink(m_pScriptSystem);
+      //m_pScriptSystem.EnableDebugger(m_pScriptDebugger);
       m_Printer = new DebugOutputPrinter;
       IConsole pConsole = pSystem.GetIConsole();
-      pConsole.AddOutputPrintSink(cast(IOutputPrintSink)&m_Printer);
-      m_Printer.Print("Test string");
+      //pConsole.AddOutputPrintSink(m_Printer);
 
       pConsole.PrintLine("Game Initialization");
 
@@ -57,21 +56,22 @@ public extern (C++)
 
       pConsole.Register("test_f", &test_f, test_f);
       pConsole.UnregisterVariable("my_var");
-      pConsole.CreateKeyBind("System:Quit()", "q", false);
-      pConsole.AddCommand("dump_scripts", "Script:DumpLoadedScripts()", 0,
-          "Outputs a list of currently loaded scripts.\nUsage: dump_scripts\n");
+      //pConsole.CreateKeyBind("System:BrowseURL(\"https://google.com\")", "b", false);
+      pConsole.AddCommand("google", "System:BrowseURL(\"https://google.com\")", 0,
+          "google");
 
       pConsole.AddCommand("clear", "System:ClearConsole()", 0,
           "Clears console text.\nUsage: clear\n");
 
       // execute the "main"-script (to pre-load other scripts, etc.)
       //assert(m_pScriptSystem.ExecuteFile("scripts/main.lua"));
+      m_pScriptSystem.ExecuteFile("scripts/main.lua");
 
       auto cgCount = m_pScriptSystem.GetCGCount();
 
-      //m_pScriptSystem.BeginCall("Init");
-      //m_pScriptSystem.PushFuncParam(0);
-      //m_pScriptSystem.EndCall();
+      m_pScriptSystem.BeginCall("Init");
+      m_pScriptSystem.PushFuncParam(0);
+      m_pScriptSystem.EndCall();
 
       return true;
     }

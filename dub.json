@@ -43,6 +43,7 @@
   ],
   "license": "proprietary",
   "name": "crygame",
-  "targetName": "CryGame.dll",
+  "targetPath": "build",
+  "targetName": "CryGame",
   "targetType": "dynamicLibrary"
 }
