@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "dub",
+			"run": false,
+			"compiler": "dmd",
+			"archType": "x86",
+			"buildType": "debug",
+			"configuration": "",
+			"_generated": true,
+			"problemMatcher": [
+				"$dmd"
+			],
+			"group": "build",
+			"label": "dub-auto: Build crygame",
+			"detail": "dub build --compiler=dmd -a=x86 -b=debug -main -shared"
+		}
+	]
+}

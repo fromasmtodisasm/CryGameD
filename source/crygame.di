@@ -1,9 +1,0 @@
-module crygame;
-
-extern (C++){
-}
-
-
-
-
-

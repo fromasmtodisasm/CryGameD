@@ -1,9 +1,7 @@
 module isystem;
 
-version(Win32){
-  public import core.sys.windows.windows;
-}
 
+public import platform;
 public import ivalidator;
 public import igame;
 public import ixmldom;
@@ -13,12 +11,13 @@ public import frame_profiler;
 public import cry_version;
 public import iinput;
 public import iconsole;
+public import ilog;
+public import iscriptsystem;
 
 
 public extern (C++)
 {
 
-  interface ILog{}
   interface IEntitySystem{}
   interface IEntity{}
   interface ICryPak{}
@@ -28,7 +27,6 @@ public extern (C++)
   interface IProcess{}
   interface I3DEngine{}
   interface ITimer{}
-  interface IScriptSystem{}
   interface IAISystem{}
   interface IFlash{}
   interface INetwork{}

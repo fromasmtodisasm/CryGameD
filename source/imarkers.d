@@ -1,5 +1,7 @@
 module imarkers;
 
+import cry_math;
+
 extern (C++)
 {
 	interface ITagPoint

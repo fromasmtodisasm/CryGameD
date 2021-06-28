@@ -1,7 +1,19 @@
 module cry_math;
 
-extern(C++){
-	class Vec3{
+extern (C++)
+{
+	struct Vec3
+	{
+
+	}
+
+	struct Vec3d
+	{
+
+	}
+
+	struct Matrix44
+	{
 
 	}
 }

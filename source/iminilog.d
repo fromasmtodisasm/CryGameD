@@ -1,5 +1,7 @@
 module iminilog;
 
+import core.stdc.stdarg;
+
 extern (C++) {
 	////////////////////////////////////////////////////////////////////////////
 interface IMiniLog
@@ -20,7 +22,7 @@ interface IMiniLog
 	
 	//! this is the simplest log function for messages
 	//! with the default implementation
-	void Log(const char * szFormat,...)
+	final void Log(const char * szFormat,...)
 	{
 		va_list args;
 		va_start(args,szFormat);
@@ -30,7 +32,7 @@ interface IMiniLog
 
 	//! this is the simplest log function for warnings
 	//! with the default implementation
-	void LogWarning(const char * szFormat,...)
+	final void LogWarning(const char * szFormat,...)
 	{
 		va_list args;
 		va_start(args,szFormat);
@@ -40,7 +42,7 @@ interface IMiniLog
 
 	//! this is the simplest log function for errors
 	//! with the default implementation
-	void LogError(const char * szFormat,...)
+	final void LogError(const char * szFormat,...)
 	{
 		va_list args;
 		va_start(args,szFormat);
