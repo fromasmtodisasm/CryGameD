@@ -39,11 +39,15 @@
   "copyright": "Copyright © 2021, user",
   "description": "A minimal D application.",
   "importPaths": [
-    "source/interfaces"
+    "CryCommon/INTERFACES",
+    "CryCommon"
   ],
-  "license": "proprietary",
+  "license": "MIT",
   "name": "crygame",
-  "targetPath": "build",
+  "subPackages": [
+    "./CryCommon/"
+  ],
   "targetName": "CryGame",
+  "targetPath": "build",
   "targetType": "dynamicLibrary"
 }

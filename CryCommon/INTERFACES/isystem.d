@@ -13,17 +13,11 @@ import iinput;
 import iconsole;
 import ilog;
 import iscriptsystem;
+import ientitysystem;
+import IRenderer;
 
 extern (C++)
 {
-
-  interface IEntitySystem
-  {
-  }
-
-  interface IEntity
-  {
-  }
 
   interface ICryPak
   {
@@ -34,10 +28,6 @@ extern (C++)
   }
 
   interface IMouse
-  {
-  }
-
-  interface IRenderer
   {
   }
 
@@ -105,19 +95,11 @@ extern (C++)
   {
   }
 
-  interface SFileVersion
-  {
-  }
-
   interface IDataProbe
   {
   }
 
   interface ICrySizer
-  {
-  }
-
-  interface ITexPic
   {
   }
 
@@ -281,7 +263,7 @@ extern (C++)
     // return the related subsystem interface
     IGame GetIGame();
     INetwork GetINetwork();
-    IRenderer GetIRenderer();
+    IRenderer.IRenderer GetIRenderer();
     IInput GetIInput();
     ITimer GetITimer();
     IConsole GetIConsole();
@@ -348,7 +330,7 @@ extern (C++)
 
     version (Win32)
     {
-      IRenderer CreateRenderer(bool fullscreen, void * hinst, void * hWndAttach);
+      IRenderer.IRenderer CreateRenderer(bool fullscreen, void * hinst, void * hWndAttach);
     }
 
     // Returns true if system running in Test mode.

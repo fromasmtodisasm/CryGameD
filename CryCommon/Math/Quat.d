@@ -1,0 +1,32 @@
+module Math.Quat;
+
+
+import platform;
+import Math.Vector2;
+import Math.Vector3;
+import Math.Matrix;
+import Math;
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// aliass                                                                  // 
+///////////////////////////////////////////////////////////////////////////////
+alias Quaternion_tpl!f32	CryQuat;
+version( MAX_API_NUM)
+{
+alias Quaternion_tpl!f32	Quat;
+alias Quaternion_tpl!real	Quat_f64;
+}
+alias Quaternion_tpl!f32 quaternionf;
+alias Quaternion_tpl!real	quaternion;
+
+//////////////////////////////////////////////////////////////////////
+// Quaternion
+//////////////////////////////////////////////////////////////////////
+struct Quaternion_tpl(T)
+{
+}
+
+
+

@@ -1,7 +1,6 @@
 module cry_camera;
 
-extern(C++){
-	class CCamera{
+public extern(C++):
+class CCamera{
 
-	}
 }

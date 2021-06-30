@@ -166,13 +166,13 @@ extern (C++)
 	
 		EXAMPLE:
 
-			m_ScriptSystem->BeginCall("Player","OnInit");
+			m_ScriptSystem.BeginCall("Player","OnInit");
 
-			m_ScriptSystem->PushParam(pObj);
+			m_ScriptSystem.PushParam(pObj);
 
-			m_ScriptSystem->PushParam(nTime);
+			m_ScriptSystem.PushParam(nTime);
 
-			m_ScriptSystem->EndCall();
+			m_ScriptSystem.EndCall();
 			
 	*/
 		//##@{
@@ -624,17 +624,17 @@ extern (C++)
 	//Utility classes
 	/////////////////////////////////////////////////////////////////////////////
 
-	//#define USE_WEAK_OBJS
-	/*
+	enum USE_WEAK_OBJS = 1;
 class _SmartScriptObject
 {
 	this(const ref _SmartScriptObject)
 	{
 	}
-	_SmartScriptObject& operator =(const _SmartScriptObject &)
+	/*
+	ref _SmartScriptObject operator =(ref const _SmartScriptObject )
 	{
 		return *this;
-	}
+	};
 	_SmartScriptObject& operator =(IScriptObject *)
 	{
 		return *this;
@@ -646,26 +646,28 @@ public:
 	}
 	explicit _SmartScriptObject(IScriptSystem *pSS,IScriptObject *p)
 	{
-    	m_pSO=pSS->CreateEmptyObject();
-			m_pSO->Attach(p);
+    	m_pSO=pSS.CreateEmptyObject();
+			m_pSO.Attach(p);
 	}
 	explicit _SmartScriptObject(IScriptSystem *pSS,bool bCreateEmpty=false)
 	{
 		if(!bCreateEmpty)
 		{
-			m_pSO=pSS->CreateObject();
+			m_pSO=pSS.CreateObject();
 		}
 		else{
-			m_pSO=pSS->CreateEmptyObject();
+			m_pSO=pSS.CreateEmptyObject();
 		}
 	}
-	~_SmartScriptObject()
+	*/
+	~this()
 	{
 		if(m_pSO)
-			m_pSO->Release();
+			m_pSO.Release();
 
 	}
-	IScriptObject *operator ->(){
+	/*	
+	IScriptObject *operator .(){
 		return m_pSO;
 	}
 	IScriptObject *operator *(){
@@ -679,11 +681,13 @@ public:
 	{
 		return m_pSO;
 	}
+	*/
 	bool Create(IScriptSystem *pSS)
 	{
-		m_pSO=pSS->CreateObject();
+		m_pSO=pSS.CreateObject();
 		return m_pSO?true:false;
 	}
+	/*
 
 	//////////////////////////////////////////////////////////////////////////
 	// Boolean comparasions.
@@ -716,10 +720,11 @@ public:
 	{
 		return m_pSO > p2;
 	};
-
+*/
 protected:
 	IScriptObject *m_pSO;
 };
+/*
 
 class _HScriptFunction
 {
@@ -727,14 +732,14 @@ public:
 	_HScriptFunction(){m_pScriptSystem;m_hFunc;};
 	_HScriptFunction(IScriptSystem *pSS){m_pScriptSystem=pSS;m_hFunc;}
 	_HScriptFunction(IScriptSystem *pSS,HSCRIPTFUNCTION hFunc){m_pScriptSystem=pSS;m_hFunc;}
-	~_HScriptFunction(){ if(m_hFunc)m_pScriptSystem->ReleaseFunc(m_hFunc);m_hFunc; }
-	void Init(IScriptSystem *pSS,HSCRIPTFUNCTION hFunc){if(m_hFunc)m_pScriptSystem->ReleaseFunc(m_hFunc);m_hFunc=hFunc;m_pScriptSystem=pSS;}
+	~_HScriptFunction(){ if(m_hFunc)m_pScriptSystem.ReleaseFunc(m_hFunc);m_hFunc; }
+	void Init(IScriptSystem *pSS,HSCRIPTFUNCTION hFunc){if(m_hFunc)m_pScriptSystem.ReleaseFunc(m_hFunc);m_hFunc=hFunc;m_pScriptSystem=pSS;}
 	operator HSCRIPTFUNCTION() const
 	{
 		return m_hFunc;
 	}
 	_HScriptFunction& operator =(HSCRIPTFUNCTION f){
-		if(m_hFunc)m_pScriptSystem->ReleaseFunc(m_hFunc);
+		if(m_hFunc)m_pScriptSystem.ReleaseFunc(m_hFunc);
 		m_hFunc=f;
 		return *this;
 	}

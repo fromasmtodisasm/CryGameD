@@ -1,10 +1,10 @@
-module interfaces.ixgame;
+module ixgame;
 
 public:
 import igame;
 import isystem;
 import imarkers;
-import cry_math;
+import Math;
 import player_system;
 import ibitstream;
 

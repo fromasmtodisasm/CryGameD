@@ -1,6 +1,6 @@
 module imarkers;
 
-import cry_math;
+import Math;
 
 extern (C++)
 {
