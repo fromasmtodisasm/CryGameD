@@ -136,14 +136,14 @@ extern(C++, class) struct CIPAddress
 {
 
 }
-import System.Stream;
+public import System.Stream;
 import ISystem;
 
 //////////////////////////////////////////////////////////////////////
 /*! class factory of the Network module
 	@see ::CreateNetwork()
 */
-struct INetwork
+interface INetwork
 {
 	//! \return local IPAddress (needed if we have several servers on one machine), 0.0.0.0 if not used
 	DWORD GetLocalIP();
@@ -225,7 +225,7 @@ struct INetwork
 ////////////////////////////////////////////////////////////////////////////////////////
 /*! callback interface that must implement by the host that want to use IClient
 */
-struct IClientSink
+interface IClientSink
 {
 	/*! called by the client when the connection occur
 	*/
@@ -280,7 +280,7 @@ struct IClientSink
 		CANNOT BE REUSED. This mean that the interface must be released 
 		and a new IClient must be created for each connection.
 */
-struct IClient
+interface IClient
 {
 	/*! start the connection to a server
 		@param szIP address of the server can be an ip address like 134.122.345.3 or a symbolic www.stuff.com
@@ -349,7 +349,7 @@ struct IClient
 };
 
 //////////////////////////////////////////////////////////////////////
-struct IServerSnooper
+interface IServerSnooper
 {
 	/*! query the LAN for servers
 	*/
@@ -360,7 +360,7 @@ struct IServerSnooper
 };
 
 //////////////////////////////////////////////////////////////////////
-struct IServerSnooperSink
+interface IServerSnooperSink
 {
 	/*! called by the client when some server is found
 		@param ip IP address of the found server
@@ -370,13 +370,13 @@ struct IServerSnooperSink
 };
 
 //////////////////////////////////////////////////////////////////////
-struct INetworkPacketSink
+interface INetworkPacketSink
 {
 	void OnReceivingPacket( const ubyte inPacketID, ref CStream Packet, ref CIPAddress ip );
 };
 
 //////////////////////////////////////////////////////////////////////
-struct INETServerSnooper
+interface INETServerSnooper
 {
 	//! query internet servers for info
 	void Update(uint dwTime);
@@ -391,7 +391,7 @@ struct INETServerSnooper
 };
 
 //////////////////////////////////////////////////////////////////////
-struct INETServerSnooperSink
+interface INETServerSnooperSink
 {
 	/*! called by the client when some server is found
 	@param ip IP address of the found server
@@ -407,7 +407,7 @@ struct INETServerSnooperSink
 
 //////////////////////////////////////////////////////////////////////
 //! interface to control servers remotely
-struct IRConSystem
+interface IRConSystem
 {
 	//! query response packets
 	//! Can specify optional client, to get server ip from.
@@ -423,7 +423,7 @@ struct IRConSystem
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //! callback interface that must implement by the host that want to use ISererSlot
-struct IServerSlotSink
+interface IServerSlotSink
 {
 	//! called by the serverslot when the connection occur
 	void OnXServerSlotConnect(const BYTE *pbAuthorizationID, uint uiAuthorizationSize);
@@ -458,7 +458,7 @@ struct SServerSlotBandwidthStats
 	The server slot is the endpoint of a client connection on the server-side. Besically for
 	every remote client a server slot exist on the server.
 */
-struct IServerSlot
+interface IServerSlot
 {
 	/*! set the host object that will receive all server slot notifications
 		@param pSink poiter to an object thath implements IServerSlotSink
@@ -512,7 +512,7 @@ struct IServerSlot
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //the application must implement this class
-struct IServerSlotFactory
+interface IServerSlotFactory
 {
 	bool CreateServerSlot(IServerSlot *pIServerSlot);
 	
@@ -529,7 +529,7 @@ struct IServerSlotFactory
 
 //////////////////////////////////////////////////////////////////////
 // the application should implement this class
-struct IServerSecuritySink
+interface IServerSecuritySink
 {
 	enum CheaterType
 	{
@@ -583,7 +583,7 @@ enum EMPServerType
 ////////////////////////////////////////////////////////////////////////////////////////
 /*!Server interface
 */
-struct IServer
+interface IServer
 {
 	/*! called to update the server status, this update all serverslots too
 		@param nTime the current time in milliseconds

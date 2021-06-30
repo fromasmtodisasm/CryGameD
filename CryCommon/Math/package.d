@@ -18,6 +18,11 @@ struct Matrix44
 
 }
 
+struct Ang3
+{
+
+}
+
 alias Vec3 Vec3d;  //obsolete! please use just Vec3
 alias Vec3 vectorf;
 alias Vec3_f64 vectorr;

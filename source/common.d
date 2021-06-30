@@ -59,3 +59,8 @@ version (PS2)
 		}
 	}
 }
+
+extern interface IXSystem;
+class CTimeValue{
+
+}

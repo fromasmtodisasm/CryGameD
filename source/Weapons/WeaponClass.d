@@ -24,7 +24,6 @@ import xplayer;
 import Math;
 import ientitysystem;
 
-struct IScriptSystem;
 import iscriptsystem;
 class  CWeaponSystemEx;
 class  CScriptObjectWeaponClass;
@@ -242,7 +241,7 @@ public:
 
 	//! memory statistics
 	//! @return number of bytes used
-	unsigned	MemStats() const;
+	uint	MemStats() const;
 
 private:
 	bool InitWeaponClassVariables();
@@ -274,9 +273,9 @@ private:
 	HSCRIPTFUNCTION[WeaponFunc_Count]			m_hServerFuncs;
 
 	// rendering related
-	IStatObj*						m_pObject;				//!< third person weapon model
+	IStatObj.IStatObj*						m_pObject;				//!< third person weapon model
 	ICryCharInstance*		m_pCharacter;			//!< first person animated weapon
-	IStatObj*						m_pMuzzleFlash;		//!< muzzle flash (used in both 3rd and 1st person)
+	IStatObj.IStatObj*						m_pMuzzleFlash;		//!< muzzle flash (used in both 3rd and 1st person)
 	string							m_sBindBone;			//!< name of bone to bind object to
 
 	// FIXME: clean this stuff up

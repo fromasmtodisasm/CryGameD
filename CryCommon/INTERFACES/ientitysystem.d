@@ -192,8 +192,7 @@ struct IEntityIt
 };
 
 //import ICryAnimation;
-
-class CXServerSlot;
+extern class CXServerSlot;
 
 ////////////////////////////////////////////////////////////////////////////
 struct EntityCloneState
@@ -1175,7 +1174,7 @@ enum ContainerInterfaceType
 	interface actually "contain" an entity within them, and therefore are EntityContainers.
 
 */
-struct IEntityContainer
+interface IEntityContainer
 {
 
 /*! Container Init Callback. This function is called from the init of the entity contained within this container.
@@ -1238,7 +1237,7 @@ struct IEntityContainer
 
 	//! return maximum radius of lightsources in container, used for vehicle now,
 	//	todo: find better solution later like store lsourses in same place as other entity components - in entity
-	float GetLightRadius() { return 0; }
+	float GetLightRadius();// { return 0; }
 
 	//! called before the entity is synched over network - to calculate priority or neccessarity
 	//! \param pXServerSlot must not be 0

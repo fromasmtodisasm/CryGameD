@@ -6,7 +6,6 @@ import IEntityRenderState;
 import ientitysystem;
 import IBitStream;
 
-struct IEntityContainer;
 extern(C++):
 
 //////////////////////////////////////////////////////////////////////////

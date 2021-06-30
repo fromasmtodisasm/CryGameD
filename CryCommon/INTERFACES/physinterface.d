@@ -29,6 +29,13 @@ struct pe_cargeomparams /*: pe_geomparams*/ {
 
 extern struct pe_params_car;
 
+struct pe_action_impulse{
+
+}
+
+struct coll_history_item{
+
+}
 
 interface IPhysicalEntity
 {

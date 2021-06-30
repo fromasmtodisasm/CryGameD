@@ -95,3 +95,7 @@ alias std_string = basic_string!char;
 //alias std_u16string = basic_string!wchar; // TODO: can't mangle these yet either...
 //alias std_u32string = basic_string!dchar;
 //alias std_wstring = basic_string!wchar_t; // TODO: we can't mangle wchar_t properly (yet?)
+
+class CTimeValue{
+
+}

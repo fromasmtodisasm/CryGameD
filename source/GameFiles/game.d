@@ -1,19 +1,23 @@
 module game;
 
-public {
-	import isystem;
-	import ixmldom;
-	import igame;
-	import ixgame;
+public import platform;
+public import isystem;
+public import ixmldom;
+public import igame;
+public import ixgame;
+public import inetwork;
 
-	import GameMods;
-	import ScriptDebugger;
-	import UI.Hud;
+public import GameMods;
+public import ScriptDebugger;
+public import UI.Hud;
 
-	import common;
-	import physinterface;
-	import GameServer.XServerRules;
-}
+public import common;
+public import physinterface;
+public import GameServer.XServerRules;
+public import XEntityProcessingCmd;
+public import ScriptObjects.Stream;
+
+import Math;
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Version of the game
@@ -44,6 +48,89 @@ enum  CGS_INPROGRESS=0;
 enum  GS_COUNTDOWN=1; 
 enum  GS_PREWAR=2; 
 enum  GS_INTERMISSION=3;
+
+import XNetwork;
+
+enum EventType { EVENT_MOVECMD=0,EVENT_EXPLOSION=1,EVENT_IMPULSE=2,EVENT_VEHDAMAGE=3 };
+enum ActionType { ACTIONTYPE_MOVEMENT = 1, ACTIONTYPE_COMBAT, ACTIONTYPE_GAME, ACTIONTYPE_MULTIPLAYER, ACTIONTYPE_DEBUG};
+
+abstract class BaseEvent
+{
+	int nRefCount;
+	EventType GetType() = 0;
+	void Write(ref CStream stm,int iPhysicalTime, IBitStream *pBitStream );
+	void Read(ref CStream stm,ref int iPhysicalTime, IBitStream *pBitStream );
+	void Execute(CXGame *pGame);
+};
+
+struct GameEvent
+{
+	this(ref const GameEvent src)
+	{
+		iPhysTime = src.iPhysTime;
+		idx = src.idx;
+		(pEvent = src.pEvent).nRefCount++;
+	}
+	~this()
+	{
+		if (--pEvent.nRefCount<=0)
+			delete pEvent;
+	}
+	//FIXME:
+	//ref GameEvent operator=(ref const GameEvent src)
+	//{
+	//	iPhysTime = src.iPhysTime;
+	//	idx = src.idx;
+	//	(pEvent = src.pEvent).nRefCount++;
+	//	return *this;
+	//}
+	int iPhysTime;
+	int idx;
+	BaseEvent *pEvent;
+};
+
+import XEntityProcessingCmd;
+
+struct EventPlayerCmd //: BaseEvent
+{
+	EntityId				idEntity;
+	CXEntityProcessingCmd	cmd;
+
+	EventType GetType() { return EVENT_MOVECMD; }
+	void Write(ref CStream stm, int iPhysicalTime, IBitStream *pBitStream );
+	void Read(ref CStream stm, ref int iPhysicalTime, IBitStream *pBitStream );
+	void Execute(CXGame *pGame);
+};
+
+struct EventExplosion// : BaseEvent
+{
+	Vec3						pos;
+	float						damage;
+	float						rmin,rmax,radius;
+	float 					impulsivePressure;
+	int 						nTerrainDecalId;
+	int32 					nShooterSSID;											//!< clientID - neeeded for MP score calculations, -1 if unknown
+	uint16 					iImpactForceMul;
+	uint16 					iImpactForceMulFinal;
+	uint16 					iImpactForceMulFinalTorso;
+	EntityId 				idShooter;
+	EntityId 				idWeapon;
+	uint8 					shakeFactor;								//!< 0..1
+	uint8 					deafnessRadius;							//!< 0..20
+	uint8 					deafnessTime;								//!< *0.25 to get float
+	uint8 					rminOcc;										//!< 0..1
+	uint8 					nOccRes;
+	uint8 					nGrow;
+	uint8 					terrainDefSize;							//!< 0..20
+
+	EventType GetType() { return EVENT_EXPLOSION; }
+	void Write(ref CStream stm, int iPhysicalTime, IBitStream *pBitStream );
+	void Read(ref CStream stm, ref int iPhysicalTime, IBitStream *pBitStream );
+	void Execute(CXGame *pGame);
+};
+
+
+
 
 
 //////////////////////////////////////////////////////////////////////

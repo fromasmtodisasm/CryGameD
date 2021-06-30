@@ -8,6 +8,7 @@ import ScriptObjects.ServerSlot;
 import game;
 import isystem;
 import WeaponClass;
+import XNetwork;
 
 //////////////////////////////////////////////////////////////////////
 class CXServerRules
@@ -18,7 +19,7 @@ public:
 
 	//!	Load the rules set by the console variables
 	bool Init(CXGame* pGame, IConsole* pConsole,
-			IScriptSystem* pScriptSystem, ILog* pLog = NULL);
+			IScriptSystem* pScriptSystem, ILog* pLog = null);
 	void Update();
 	//! Unload the rules
 	void ShutDown();
