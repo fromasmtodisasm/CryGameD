@@ -41,3 +41,11 @@ interface IPhysicalEntity
 {
 
 }
+
+interface IPhysicsStreamer{
+
+}
+
+interface IPhysicsEventClient{
+
+}

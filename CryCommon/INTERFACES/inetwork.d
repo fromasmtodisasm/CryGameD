@@ -130,7 +130,6 @@ enum CryNetworkVarible
 // Interfaces
 ////////////////////////////////////////////////////////////////////////////////////////
 struct ICompressionHelper;
-extern class ICrySizer;
 extern(C++, class) struct CIPAddress
 {
 

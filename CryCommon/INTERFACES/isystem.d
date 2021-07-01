@@ -15,6 +15,7 @@ import ilog;
 import iscriptsystem;
 import ientitysystem;
 import irenderer;
+import inetwork : INetwork;
 
 extern (C++)
 {
@@ -48,10 +49,6 @@ extern (C++)
   }
 
   interface IFlash
-  {
-  }
-
-  interface INetwork
   {
   }
 
@@ -263,7 +260,7 @@ extern (C++)
     // return the related subsystem interface
     IGame GetIGame();
     INetwork GetINetwork();
-    IRenderer.IRenderer GetIRenderer();
+    IRenderer GetIRenderer();
     IInput GetIInput();
     ITimer GetITimer();
     IConsole GetIConsole();
@@ -330,7 +327,7 @@ extern (C++)
 
     version (Win32)
     {
-      IRenderer.IRenderer CreateRenderer(bool fullscreen, void * hinst, void * hWndAttach);
+      IRenderer CreateRenderer(bool fullscreen, void * hinst, void * hWndAttach);
     }
 
     // Returns true if system running in Test mode.

@@ -1,8 +1,8 @@
 module Renderer.RendElement;
 
 import Math;
-import IRenderer;
-import Renderer.IShader;
+import irenderer;
+import Renderer.ishader;
 import platform;
 
 //struct SMsurface;

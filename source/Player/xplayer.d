@@ -45,20 +45,21 @@ struct WeaponInfo
 	extern interface ICryCharInstance;
 	void DetachBindingHandles(ICryCharInstance *pCharacter)
 	{
-		assert (IsHeapValid());
-		if (hBindInfo)
-		{
-			pCharacter.Detach(hBindInfo);
-			//FIXME:
-			//hBindInfo = ICryCharInstance::nInvalidObjectBindingHandle;
-		}
-		if (hAuxBindInfo)
-		{
-			pCharacter.Detach(hAuxBindInfo);
-			//FIXME:
-			//hAuxBindInfo = ICryCharInstance::nInvalidObjectBindingHandle;
-		}
-		assert (IsHeapValid());
+		//FIXME;
+		//assert (IsHeapValid());
+		//if (hBindInfo)
+		//{
+		//	pCharacter.Detach(hBindInfo);
+		//	//FIXME:
+		//	//hBindInfo = ICryCharInstance::nInvalidObjectBindingHandle;
+		//}
+		//if (hAuxBindInfo)
+		//{
+		//	pCharacter.Detach(hAuxBindInfo);
+		//	//FIXME:
+		//	//hAuxBindInfo = ICryCharInstance::nInvalidObjectBindingHandle;
+		//}
+		//assert (IsHeapValid());
 	}
 };
 

@@ -1,7 +1,7 @@
 module VertexFormats;
 
 import Math;
-import IShader;
+import ishader;
 
 //////////////////////////////////////////////////////////////////////////
 // If you change this you also have to change gBufOffsTable in CRendElement.cpp

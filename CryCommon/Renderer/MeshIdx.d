@@ -1,9 +1,8 @@
 module MeshIdx;
-import IRenderer;
+import irenderer;
 import CryHeaders;
 import Math;
-import IShader;
-import IRenderer;
+import irenderer;
 
 //////////////////////////////////////////////////////////////////////////
 struct TexCoord

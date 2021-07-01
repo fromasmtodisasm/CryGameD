@@ -3,6 +3,7 @@ module platform;
 public import core.stdc.stdarg;
 public import core.stdcpp.string;
 public import core.stdcpp.vector;
+public import std.container;
 
 version (Windows)
 {

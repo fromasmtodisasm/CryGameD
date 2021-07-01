@@ -3,12 +3,12 @@ module ientitysystem;
 public:
 import core.sys.windows.windows;
 
-import IStatObj;
+import istatobj;
 import Misc.EntityDesc;
 import physinterface;
 import Stream;
 import platform;
-import IRenderer;
+import irenderer;
 import i3dengine;
 
 extern (C++):
@@ -157,7 +157,7 @@ public:
 	Vec3 		scale;
 	Matrix44 	mtx;
 
-	IStatObj.IStatObj* object;
+	IStatObj* object;
 
 	// flags for "spring" objects that are connected to 2 other entity parts (ETY_OBJ_IS_LINKED)
 	int ipart0, ipart1;
@@ -191,7 +191,7 @@ struct IEntityIt
 	void MoveFirst();
 };
 
-//import ICryAnimation;
+import icryanimation;
 private extern class CXServerSlot;
 
 ////////////////////////////////////////////////////////////////////////////
@@ -667,7 +667,7 @@ public:
 	@return Pointer to an IStatObj object interface
 	@see IStatObj
 */
-	IStatObj.IStatObj *GetIStatObj(uint pos);
+	IStatObj *GetIStatObj(uint pos);
 
 	extern interface ISound;
 /*! Play sound from entity position
@@ -736,7 +736,7 @@ public:
 
 /*! Rendering of the entity.
 */
-	bool DrawEntity(const ref IRenderer.SRendParams  EntDrawParams);
+	bool DrawEntity(const ref SRendParams  EntDrawParams);
 
 /*! Physicalize this entity as a particle.
 
@@ -1227,7 +1227,7 @@ abstract class IEntityContainer
 */
 	void GetEntityDesc( ref CEntityDesc desc );
 
-	void OnDraw(const ref IRenderer.SRendParams  EntDrawParams);
+	void OnDraw(const ref SRendParams  EntDrawParams);
 
 	//! start preloading render resoures
 	void PreloadInstanceResources(Vec3d vPrevPortalPos, float fPrevPortalDistance, float fTime);

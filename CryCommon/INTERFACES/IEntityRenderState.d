@@ -1,8 +1,8 @@
 module ientityrenderstate;
 
 import Math;
-import IStatObj;
-import IRenderer;
+import istatobj;
+import irenderer;
 import LeafBuffer;
 import ientitysystem;
 import core.stdc.stdio;
@@ -40,7 +40,7 @@ struct IEntityRenderState
 	struct ShadowMapInfo
 	{
 
-		void Release(EERType eEntType, IRenderer.IRenderer * pRenderer);
+		void Release(EERType eEntType, IRenderer * pRenderer);
 		list2!ShadowMapLightSourceInstance  * pShadowMapCasters;
 		ShadowMapLightSource * pShadowMapFrustumContainer;
 		ShadowMapLightSource * pShadowMapFrustumContainerPassiveCasters;
@@ -100,8 +100,8 @@ abstract class IEntityRender
   bool HasChanged() { return false; }
 	bool DrawEntity(const ref SRendParams  EntDrawParams);
 	bool IsStatic() ;
-  IStatObj.IStatObj * GetEntityStatObj( uint nSlot, Matrix44 * pMatrix = NULL, bool bReturnOnlyVisible = false) { return 0; }
-  void SetEntityStatObj( uint nSlot, IStatObj.IStatObj * pStatObj, Matrix44 * pMatrix = NULL ) {};
+  IStatObj * GetEntityStatObj( uint nSlot, Matrix44 * pMatrix = NULL, bool bReturnOnlyVisible = false) { return 0; }
+  void SetEntityStatObj( uint nSlot, IStatObj * pStatObj, Matrix44 * pMatrix = NULL ) {};
 	ICryCharInstance* GetEntityCharacter( uint nSlot, Matrix44 * pMatrix = NULL ) { return 0; }
 	void Physicalize(bool bInstant=false) {} 
 	CDLight	* GetLight() { return 0; }

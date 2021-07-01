@@ -1,10 +1,10 @@
-module IShader;
+module ishader;
 
 import Utils.TString;
 import Utils.TArrays;
 import Utils.smartptr;
 import Renderer.LeafBuffer;
-import IRenderer;
+import irenderer;
 import Math;
 
 import Math.XOptimize;

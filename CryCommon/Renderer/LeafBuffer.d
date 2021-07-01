@@ -1,7 +1,7 @@
 module LeafBuffer;
 
-import IRenderer;
-import IShader;
+import irenderer;
+import ishader;
 import Renderer.VertexFormats;
 import Renderer.VertexBufferSource;
 import CryHeaders;
@@ -293,7 +293,7 @@ struct CLeafBuffer
 
 	void CalcFaceNormals();
 
-  void AddRE(CCObject * pObj, IShader.IShader * pEf, int nNumSort=0, IShader.IShader * pStateEff = null);
+  void AddRE(CCObject * pObj, IShader * pEf, int nNumSort=0, IShader * pStateEff = null);
 
   void SaveTexCoords(ubyte *pD, SBufInfoTable *pOffs, int Size);
   void SaveColors(ubyte *pD, SBufInfoTable *pOffs, int Size);
@@ -338,14 +338,14 @@ struct CLeafBuffer
 
   void SetRECustomData(float * pfCustomData, float fFogScale=0, float fAlpha=1);
 
-  void SetChunk(  IShader.IShader * pShader, 
+  void SetChunk(  IShader * pShader, 
                           int nFirstVertId, int nVertCount, 
                           int nFirstIndexId, int nIndexCount, int nMatID = 0,
 													bool bForceInitChunk = false);
 
   int									m_nClientTextureBindID;
 
-  void SetShader( IShader.IShader * pShader, int nCustomTID = 0 );
+  void SetShader( IShader * pShader, int nCustomTID = 0 );
 
   void   * GetSecVerticesPtr(int * pVerticesCount);
 
@@ -364,7 +364,7 @@ struct CLeafBuffer
 	void DrawImmediately();
   bool LoadMaterial(int m, 
     const char *szFileName, const char *szFolderName, 
-    ref list2!CMatInfo  lstMatTable, IRenderer.IRenderer * pRenderer,
+    ref list2!CMatInfo  lstMatTable, IRenderer * pRenderer,
     MAT_ENTITY * me, bool bFake);
   static int SetTexType(TextureMap3 *tm);
 	bool UpdateTangBuffer(SPipTangents *pBasis);

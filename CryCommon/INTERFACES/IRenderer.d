@@ -1,4 +1,4 @@
-module IRenderer;
+module irenderer;
 
 public import platform;
 
@@ -34,7 +34,6 @@ mixin(GenFWD!("CStatObj"));
 mixin(GenFWD!("CStatObjInst"));
 mixin(GenFWD!("ShadowMapFrustum"));
 mixin(GenFWD!("CXFont"));
-extern interface IStatObj;
 //extern interface IEntityRender;
 
 mixin(GenFWD!("CObjManager"));
@@ -48,7 +47,8 @@ import isystem;
 //mixin(GenFWD!("ShadowMapLightSourceInstance"));
 mixin(GenFWD!("CCObject"));
 mixin(GenFWD!("CTexMan"));
-mixin(GenFWD!("SVrect"));
+//mixin(GenFWD!("SVrect"));
+extern struct SVrect;
 mixin(GenFWD!("SColorVert2D"));
 mixin(GenFWD!("SColorVert"));
 mixin(GenFWD!("CFColor"));
@@ -505,7 +505,7 @@ enum ERendStats
 
 //////////////////////////////////////////////////////////////////////////
 //DOC-IGNORE-BEGIN
-import IShader;
+public import ishader;
 //DOC-IGNORE-END
 
 //////////////////////////////////////////////////////////////////////////
@@ -849,7 +849,7 @@ class IRenderer//: public IRendererCallbackServer
   // external interface for shaders
   /////////////////////////////////////////////////////////////////////////////////
 
-  bool EF_PrecacheResource(IShader.IShader *pSH, float fDist, float fTimeToReady, int Flags);
+  bool EF_PrecacheResource(IShader *pSH, float fDist, float fTimeToReady, int Flags);
   bool EF_PrecacheResource(ITexPic *pTP, float fDist, float fTimeToReady, int Flags);
   bool EF_PrecacheResource(CLeafBuffer *pPB, float fDist, float fTimeToReady, int Flags);
   bool EF_PrecacheResource(CDLight *pLS, float fDist, float fTimeToReady, int Flags);
@@ -873,7 +873,7 @@ class IRenderer//: public IRendererCallbackServer
   // Shaders/Shaders management /////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////
   // Load shader for name (name)
-  IShader.IShader *EF_LoadShader (const char *name, EShClass Class, int flags=0, uint64 nMaskGen=0);
+  IShader *EF_LoadShader (const char *name, EShClass Class, int flags=0, uint64 nMaskGen=0);
   // Load shader item for name (name)
   SShaderItem EF_LoadShaderItem (const char *name, EShClass Class, bool bShare, const char *templName, int flags=0, SInputShaderResources *Res=NULL, uint64 nMaskGen=0);
   // reload file
@@ -883,7 +883,7 @@ class IRenderer//: public IRendererCallbackServer
   // Reload all texturer files
   void					EF_ReloadTextures ();
   // Create new shader as copy of (ef)
-  IShader.IShader			*EF_CopyShader(IShader.IShader *ef);
+  IShader			*EF_CopyShader(IShader *ef);
   // Get texture object by ID
   ITexPic *EF_GetTextureByID(int Id);
   // Loading of the texture for name(nameTex)
@@ -892,7 +892,7 @@ class IRenderer//: public IRendererCallbackServer
   int			    EF_LoadLightmap (const char *name);
   bool			    EF_ScanEnvironmentCM (const char *name, int size, ref Vec3 Pos);
   // Function used for loading animated texture from specified folder
-  int						EF_ReadAllImgFiles(IShader.IShader *ef, SShaderTexUnit *tl, STexAnim *ta, char *name);
+  int						EF_ReadAllImgFiles(IShader *ef, SShaderTexUnit *tl, STexAnim *ta, char *name);
   // Return texture procedure for name (name)
   char					**EF_GetShadersForFile(const char *File, int num);
   // Return Light. Material properties for Name (Str). Materials descriptions - in shader file LightMaterials.ses
@@ -922,7 +922,7 @@ class IRenderer//: public IRendererCallbackServer
   CCObject *EF_GetObject (bool bTemp=false, int num=-1);
 
   // Add shader to the list
-  void EF_AddEf (int NumFog, CRendElement *re, IShader.IShader *ef, SRenderShaderResources *sr,  CCObject *obj, int nTempl, IShader.IShader *efState=null, int nSort=0);
+  void EF_AddEf (int NumFog, CRendElement *re, IShader *ef, SRenderShaderResources *sr,  CCObject *obj, int nTempl, IShader *efState=null, int nSort=0);
 
   // Draw all shaded REs in the list
   void EF_EndEf3D (int nFlags);
@@ -941,18 +941,18 @@ class IRenderer//: public IRendererCallbackServer
   // Add new shader to the list
   bool EF_DrawEfForName(char *name, float x, float y, float width, float height, ref CFColor col, int nTempl=-1);
   bool EF_DrawEfForNum(int num, float x, float y, float width, float height, ref CFColor col, int nTempl=-1);
-  bool EF_DrawEf(IShader.IShader *ef, float x, float y, float width, float height, ref CFColor col, int nTempl=-1);
+  bool EF_DrawEf(IShader *ef, float x, float y, float width, float height, ref CFColor col, int nTempl=-1);
   bool EF_DrawEf(SShaderItem si, float x, float y, float width, float height, ref CFColor col, int nTempl=-1);
 
   // Add new shader as part of texture to the list
   bool EF_DrawPartialEfForName(char *name, SVrect *vr, SVrect *pr, ref CFColor col);
   bool EF_DrawPartialEfForNum(int num, SVrect *vr, SVrect *pr, ref CFColor col);
-  bool EF_DrawPartialEf(IShader.IShader *ef, SVrect *vr, SVrect *pr, ref CFColor col, float iwdt=0, float ihgt=0);
+  bool EF_DrawPartialEf(IShader *ef, SVrect *vr, SVrect *pr, ref CFColor col, float iwdt=0, float ihgt=0);
 
   // Return different common shader parameters (used in ShaderBrowser) CryIndEd.exe
   void *EF_Query(int Query, int Param=0);
   // Construct effector (optimize) after parsing
-  void EF_ConstructEf(IShader.IShader *Ef);
+  void EF_ConstructEf(IShader *Ef);
   // Setting of the global world color (use in shaders pipeline)
   void EF_SetWorldColor(float r, float g, float b, float a=1.0f);
   //! Register fog volume for layered fog
@@ -1157,7 +1157,7 @@ struct SRendParams
 	//! amount of bending animations for vegetations
   float				fBending;
 	//! state shader
-  IShader.IShader			*pStateShader;
+  IShader			*pStateShader;
 	//! list of shadow map casters
   list2!ShadowMapLightSourceInstance * pShadowMapCasters;
 	//! object color

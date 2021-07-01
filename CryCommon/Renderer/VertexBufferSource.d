@@ -1,6 +1,6 @@
 module VertexBufferSource;
-import Renderer.IShader;
-import IRenderer;
+import Renderer.ishader;
+import irenderer;
 import System.CryHeaders;
 //////////////////////////////////////////////////////////////////////////
 struct VertexBufferSource

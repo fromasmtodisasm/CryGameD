@@ -1,6 +1,7 @@
 module igame;
 
 import isystem;
+import physinterface;
 import imarkers;
 
 import cry_version;
@@ -81,7 +82,7 @@ interface IEntityClassRegistry
 	@param bForceReload if set to true force script to be eloaded for already registered class.
 	@return true if added, false if failed
 	*/
-	bool AddClass(const EntityClassId ClassId,const char* sClassName,const char* sScriptFile,bool bReserved=false,bool bForceReload=false);
+	bool AddClass(const EntityClassId ClassId,const(char*)  sClassName,const(char*)  sScriptFile,bool bReserved=false,bool bForceReload=false);
 
 	/*move the iterator to the begin of the registry
 	*/
@@ -108,9 +109,6 @@ struct INameIterator
 	bool MoveNext();
 	bool Get(char *pszBuffer, INT *pSize);
 };
-
-class IPhysicsStreamer;
-class IPhysicsEventClient;
 
 //////////////////////////////////////////////////////////////////////////
 // MOD related
@@ -155,7 +153,7 @@ interface IGameMods
 	bool SetCurrentMod( const char *sModName,bool bNeedsRestart=false );
 	// Returns modified path for the currently active mod/tc (if any)
 	// @returns true if there is an active mod, false otherwise
-	const char* GetModPath(const char *szSource);
+	const(char*)  GetModPath(const char *szSource);
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -193,7 +191,7 @@ interface IGame
 
 	// Summary: Initialize game.
 	// Returns: true on success, false otherwise
-	bool Init(ISystem pSystem, bool bDedicatedSrv, bool bInEditor, const char* szGameMod);
+	bool Init(ISystem pSystem, bool bDedicatedSrv, bool bInEditor, const(char*)  szGameMod);
 
 	// Summary: Update the module and all subsystems
 	// Returns: false to stop the main loop
@@ -206,7 +204,7 @@ interface IGame
 	// Summary: Determines if a MOD is currently loaded
 	// Returns: A string holding the name of the MOD if one is loaded, else
 	//          NULL will be returned if only Far Cry is loaded.
-	const char* IsMODLoaded();
+	const(char*)  IsMODLoaded();
 
 	// Returns interface to access Game Mod functionality.
 	IGameMods GetModsInterface();
@@ -239,18 +237,18 @@ interface IGame
 
 	// Load level [level editor only]
 	// @param pszLevelDirectory level directory
-	bool LoadLevelForEditor(const char* pszLevelDirectory, const char* pszMissionName);
+	bool LoadLevelForEditor(const(char*)  pszLevelDirectory, const(char*)  pszMissionName);
 
 	// Get the entity class regitry
 	IEntityClassRegistry* GetClassRegistry();
 
 	void OnSetVar(ICVar pVar);
-	void SendMessage(const char* s);
+	void SendMessage(const(char*)  s);
 	void ResetState();
-	void GetMemoryStatistics(ICrySizer* pSizer);
+	void GetMemoryStatistics(ICrySizer pSizer);
 
 	// saves player configuration
-	void SaveConfiguration(const char* sSystemCfg, const char* sGameCfg, const char* sProfile);
+	void SaveConfiguration(const(char*)  sSystemCfg, const(char*)  sGameCfg, const(char*)  sProfile);
 
 	// This is used by editor for changing properties from scripts (no restart).
 	void ReloadScripts();
@@ -259,7 +257,7 @@ interface IGame
 
 	// functions return callback sinks for the physics
 	IPhysicsStreamer GetPhysicsStreamer();
-	IPhysicsEventClient* GetPhysicsEventClient();
+	IPhysicsEventClient GetPhysicsEventClient();
 
 	// is called from time to time during loading (usually network updates)
 	// currently only called for server map loading

@@ -11,29 +11,9 @@ import GameServer.XServer;
 
 extern (C++):
 //////////////////////////////////////////////////////////////////////////
-interface IXGame : IGame
+abstract interface IXGame : IGame
+
 {
-	/* Initialize game.
-	@return true on success, false otherwise
-	*/
-	bool Init(ISystem pSystem, bool bDedicatedSrv, bool bInEditor, const char* szGameMod);
-	/*Upadate the module and all subsystems
-	@return false to stop the main loop 
-	*/
-	bool Update();
-	/*run the main loop until another subsystem force the exit
-	@return false to stop the main loop 
-	*/
-	bool Run(ref bool bRelaunch);
-
-	/* Returns current MOD
-	NULL if FarCry, name of MOD otherwise
-	*/
-	const char* IsMODLoaded();
-
-	/* Returns interface to access Game Mod functionality.
-	*/
-	IGameMods* GetModsInterface();
 
 	/*Executes scheduled events, called by system before executing each fixed time step in multiplayer
 	*/
@@ -68,7 +48,7 @@ interface IXGame : IGame
 	void SetTerrainSurface(const char* sMaterial, int nLayerID);
 	/*Get the local player entity[editor only]
 	*/
-	IEntity* GetMyPlayer();
+	IEntity GetMyPlayer();
 	/*Get the entity class regitry
 	*/
 	IEntityClassRegistry* GetClassRegistry();
@@ -83,30 +63,30 @@ interface IXGame : IGame
 
 	/* This function creates a tag point in the game world
 	*/
-	ITagPoint* CreateTagPoint(const ref string name, const ref Vec3 pos, const ref Vec3 angles);
+	ITagPoint CreateTagPoint(const ref string name, const ref Vec3 pos, const ref Vec3 angles);
 
 	/* Retieves a tag point by name
 	*/
-	ITagPoint* GetTagPoint(const ref string name);
+	ITagPoint GetTagPoint(const string name);
 
 	/*	Deletes a tag point from the game
 	*/
 	void RemoveTagPoint(ITagPoint* pPoint);
 
 	// shape
-	IXArea* CreateArea(const Vec3* vPoints, const int count, const string[] names,
+	IXArea CreateArea(const Vec3* vPoints, const int count, const string[] names,
 			const int type, const int groupId = -1,
 			const float width = 0.0f, const float height = 0.0f);
 	// box
-	IXArea* CreateArea(const ref Vec3 min, const ref Vec3 max, const ref Matrix44 TM,
+	IXArea CreateArea(const ref Vec3 min, const ref Vec3 max, const ref Matrix44 TM,
 			const string[] names, const int type,
 			const int groupId = -1, const float width = 0.0f);
 	// sphere
-	IXArea* CreateArea(const ref Vec3 center, const float radius, const string[] names,
+	IXArea CreateArea(const ref Vec3 center, const float radius, const string[] names,
 			const int type, const int groupId = -1, const float width = 0.0f);
 	//		const char* const className, const int type, const float width.0f);
 	void DeleteArea(const IXArea* pArea);
-	IXArea* GetArea(const ref Vec3 point);
+	IXArea GetArea(const ref Vec3 point);
 
 	// detect areas the listener is in before system update
 	void CheckSoundVisAreas();
@@ -138,12 +118,11 @@ interface IXGame : IGame
 
 	void SetViewMode(bool bThirdPerson);
 
-	void AddRespawnPoint(ITagPoint* pPoint);
-	void RemoveRespawnPoint(ITagPoint* pPoint);
-	void OnSetVar(ICVar* pVar);
+	void AddRespawnPoint(ITagPoint pPoint);
+	void RemoveRespawnPoint(ITagPoint pPoint);
 	void SendMessage(const char* s);
 	void ResetState();
-	void GetMemoryStatistics(ICrySizer* pSizer);
+	void GetMemoryStatistics(ICrySizer pSizer);
 	void HideLocalPlayer(bool hide, bool bEditor);
 
 	// saves player configuration
@@ -154,8 +133,8 @@ interface IXGame : IGame
 	void ReloadScripts();
 
 	// sets a timer for a generic script object table
-	int AddTimer(IScriptObject* pTable, uint nStartTimer, uint nTimer,
-			IScriptObject* pUserData, bool bUpdateDuringPause);
+	int AddTimer(IScriptObject pTable, uint nStartTimer, uint nTimer,
+			IScriptObject pUserData, bool bUpdateDuringPause);
 
 	CXServer* GetServer();
 
@@ -172,21 +151,22 @@ interface IXGame : IGame
 	void GotoGame(bool bTriggerOnSwitch = false);
 
 	// functions return callback sinks for the physics
-	IPhysicsStreamer* GetPhysicsStreamer();
-	IPhysicsEventClient* GetPhysicsEventClient();
+	IPhysicsStreamer GetPhysicsStreamer();
+	IPhysicsEventClient GetPhysicsEventClient();
 
 	// checks if gore enabled in the game
 	bool GoreOn() const;
 
 	// for compressed readwrite operation with CStreams 
 	// /return you can assume the returned pointer is always valid
-	IBitStream* GetIBitStream();
+	IBitStream GetIBitStream();
 
 	// is called from time to time during loading (usually network updates)
 	// currently only called for server map loading
 	void UpdateDuringLoading();
 
 	bool GetModuleState(EGameCapability eCap);
+	
 
 	string GetName();
 	int GetInterfaceVersion();
