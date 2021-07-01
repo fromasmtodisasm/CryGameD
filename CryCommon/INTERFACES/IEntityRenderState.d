@@ -1,4 +1,4 @@
-module IEntityRenderState;
+module ientityrenderstate;
 
 import Math;
 import IStatObj;
@@ -6,10 +6,8 @@ import IRenderer;
 import LeafBuffer;
 import ientitysystem;
 import core.stdc.stdio;
+import platform;
 
-public import core.stdcpp.xutility;
-public import core.stdcpp.utility;
-public import core.stdcpp.vector;
 import physinterface;
 
 // !!! don't change the type !!!

@@ -1,4 +1,4 @@
-module IStatObj;
+module istatobj;
 
 interface IStatObj
 {

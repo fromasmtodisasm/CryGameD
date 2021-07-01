@@ -17,8 +17,8 @@ public:
 	~this();
 	
 	// IGameMods implementation.
-	const(SGameModDescription*) GetModDescription( const char *sModName ) const;
-	const(char*) GetCurrentMod() const;
+	immutable(SGameModDescription*) GetModDescription( const char *sModName ) const;
+	immutable(char*) GetCurrentMod() const;
 	bool SetCurrentMod( const char *sModName,bool bNeedsRestart=false );
 	const char* GetModPath(const char *szSource);	
 

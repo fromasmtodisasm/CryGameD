@@ -11,6 +11,7 @@ struct Vec3
 	this(float x, float y, float z){
 
 	}
+	float x,y,z;
 }
 
 struct Matrix44

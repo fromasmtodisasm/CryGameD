@@ -14,7 +14,7 @@ import iconsole;
 import ilog;
 import iscriptsystem;
 import ientitysystem;
-import IRenderer;
+import irenderer;
 
 extern (C++)
 {

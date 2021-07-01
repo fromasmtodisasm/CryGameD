@@ -1,7 +1,6 @@
 module Script._ScriptableEx;
 
 import iscriptsystem;
-import isystem;
 
 //////////////////////////////////////////////////////////////////////
 class _ScriptableEx(T)

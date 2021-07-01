@@ -4,7 +4,7 @@ public:
 import core.sys.windows.windows;
 
 import IStatObj;
-import EntityDesc;
+import Misc.EntityDesc;
 import physinterface;
 import Stream;
 import platform;
@@ -192,7 +192,7 @@ struct IEntityIt
 };
 
 //import ICryAnimation;
-extern class CXServerSlot;
+private extern class CXServerSlot;
 
 ////////////////////////////////////////////////////////////////////////////
 struct EntityCloneState
@@ -215,7 +215,7 @@ struct EntityCloneState
 	Vec3						m_v3Angles;					//!<
 	bool						m_bLocalplayer;			//!< say if this entity is the entity of the player
 	bool						m_bSyncYAngle = true;			//!< can be changed dynamically (1 bit), only used if m_bSyncAngles==true, usually not used by players (roll)
-	bool						m_bSyncAngle = trues;			//!< can be changed dynamically (1 bit)
+	bool						m_bSyncAngle = true;			//!< can be changed dynamically (1 bit)
 	bool						m_bSyncPosition = true;		//!< can be changed dynamically (1 bit)
 	float						m_fWriteStepBack;		//!<
 	bool						m_bOffSync = true;					//!<
@@ -1174,7 +1174,7 @@ enum ContainerInterfaceType
 	interface actually "contain" an entity within them, and therefore are EntityContainers.
 
 */
-interface IEntityContainer
+abstract class IEntityContainer
 {
 
 /*! Container Init Callback. This function is called from the init of the entity contained within this container.
@@ -1250,7 +1250,7 @@ interface IEntityContainer
 //////////////////////////////////////////////////////////////////////
 /*! Interface for accessing character related entity functions.
  */
-struct IEntityCharacter
+interface IEntityCharacter
 {
 /*! Load new character model at a specific slot in the entity.
 	@param pos The number of the slot in which this character will be loaded
@@ -1310,7 +1310,7 @@ struct IEntityCharacter
 /*! A callback interface for a class that wants to be aware when new entities are being spawned or removed. A class that implements
 	this interface will be called everytime a new entity is spawned, removed, or when an entity container is to be spawned.
 */
-struct IEntitySystemSink
+interface IEntitySystemSink
 {
 /*! This callback enables the class which implements this interface a way to spawn containers for the entity that is just in the
 	process of spawning. Every entity class that has a container creates it here. NOTE: Although the container is being created here,

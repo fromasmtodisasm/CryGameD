@@ -1,11 +1,28 @@
 module game;
 
-public import platform;
-public import isystem;
-public import ixmldom;
-public import igame;
-public import ixgame;
+import igame;
+import iscriptsystem;
+import EntityClassRegistry;
+import Localization.StringTableMgr;
+import XSurfaceMgr;
+import XDemoMgr;
+import XArea;
+
+
+import WeaponSystemEx;
+import WeaponClass;
+import XVehicleSystem;
+
+import UI.IngameDialog;
+
+import GameFiles.ScriptTimerMgr;
+
+
+
 public import inetwork;
+public import ixgame;
+public import ixmldom;
+public import platform;
 
 public import GameMods;
 public import ScriptDebugger;
@@ -17,7 +34,11 @@ public import GameServer.XServerRules;
 public import XEntityProcessingCmd;
 public import ScriptObjects.Stream;
 
+import UI.System;
+
 import Math;
+import Renderer.Cry_Color4;
+import GameClient.XClient;
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Version of the game
@@ -417,7 +438,8 @@ public:
 	void ClearTagPoints();
 	void SetCurrentUI(CUIHud *pUI);
 
-	vector2f GetSubtitleSize(ref const string szMessage, float sizex, float sizey, ref const string szFontName = "default", ref const string szFontEffect = "default");
+	//FIXME:
+	//vector2f GetSubtitleSize(ref const string szMessage, float sizex, float sizey, ref const string szFontName = "default", ref const string szFontEffect = "default");
 	void WriteSubtitle(ref const string szMessage, float x, float y, float sizex, float sizey, ref const color4f cColor, ref const string szFontName = "default", ref const string szFontEffect = "default");
 
 	bool								m_bIsLoadingLevelFromFile;		//!<

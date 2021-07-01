@@ -6,7 +6,6 @@ enum SPECTATORS_TEAM = 0;
 
 import ScriptObjects.ServerSlot;
 import game;
-import isystem;
 import WeaponClass;
 import XNetwork;
 

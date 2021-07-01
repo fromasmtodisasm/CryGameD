@@ -2317,7 +2317,7 @@ public:
 
 	//the light image
 	ITexPic*												m_pLightImage;
-  float														m_fLightFrustumAngle = 45.f;
+  float														m_fLightFrustumAngle = 45;
   float														m_fBaseLightFrustumAngle;
   float                           m_fAnimSpeed;
 

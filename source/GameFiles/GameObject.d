@@ -1,17 +1,19 @@
 module GameObject;
 
 import ientitysystem;
+import Math;
+extern(C++):
 
 //////////////////////////////////////////////////////////////////////
 /*!@see IEntityContainer
 */
-class CGameObject : 
+abstract class CGameObject : 
 IEntityContainer
 {
 public:
 	//! constructor
 	//! destructor
-	~this() {}
+	//~this() {}
 
 	//! Return entity used by this game object.
 	IEntity* GetEntity() const { return m_pEntity; }
@@ -23,14 +25,14 @@ public:
 
 	// interface IEntityContainer 
 
-	void SetEntity( IEntity *e ) { m_pEntity = e; }
-	void OnSetAngles( ref const Vec3 ang ){};
-	Vec3 CalcSoundPos() { if (m_pEntity) return m_pEntity.GetPos(); return Vec3(0.0f, 0.0f, 0.0f); }
-	void Release() {  delete this; };
-	bool QueryContainerInterface(ContainerInterfaceType desired_interface, void** ppInterface) { *ppInterface=0; return false;}
-	void OnDraw(ref const SRendParams  RendParams) {}
-	bool IsSaveable() { return(true); }
-	void OnEntityNetworkUpdate( ref const EntityId idViewerEntity, ref const Vec3d v3dViewer, ref uint32 inoutPriority, 
+	override void SetEntity( IEntity *e ) { m_pEntity = e; }
+	override void OnSetAngles( ref const Vec3 ang ){};
+	override Vec3 CalcSoundPos() { if (m_pEntity) return m_pEntity.GetPos(); return Vec3(0.0f, 0.0f, 0.0f); }
+	override void Release() {  delete this; };
+	override bool QueryContainerInterface(ContainerInterfaceType desired_interface, void** ppInterface) { *ppInterface=0; return false;}
+	override void OnDraw(ref const SRendParams  RendParams) {}
+	override bool IsSaveable() { return(true); }
+	override void OnEntityNetworkUpdate( ref const EntityId idViewerEntity, ref const Vec3d v3dViewer, ref uint32 inoutPriority, 
 		ref EntityCloneState inoutCloneState ) const {}
 
 protected:  

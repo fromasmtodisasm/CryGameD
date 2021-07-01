@@ -1,6 +1,6 @@
 module ScriptDebugger;
 
-public import isystem;
+public import iscriptsystem;
 import game;
 
 extern (C++):

@@ -330,7 +330,7 @@ template OOFS(string s){
 }
 
 static SBufInfoTable[] gBufInfoTable = 
-{
+[
   {
     0
   },
@@ -342,15 +342,15 @@ static SBufInfoTable[] gBufInfoTable =
 	struct_VERTEX_FORMAT_P3F_COL4UB.color.dcolor.offsetof
   },
   {  //VERTEX_FORMAT_P3F_TEX2F
-    struct_VERTEX_FORMAT_P3F_TEX2F.st[0].offsetof
+    struct_VERTEX_FORMAT_P3F_TEX2F.st.offsetof
   },
   {  //VERTEX_FORMAT_P3F_COL4UB_TEX2F
-    OOFS(struct_VERTEX_FORMAT_P3F_COL4UB_TEX2F.st[0].offsetof),
-    OOFS(struct_VERTEX_FORMAT_P3F_COL4UB_TEX2F.color.dcolor)
+    struct_VERTEX_FORMAT_P3F_COL4UB_TEX2F.st.offsetof,
+    struct_VERTEX_FORMAT_P3F_COL4UB_TEX2F.color.dcolor.offsetof
   },
   {  //VERTEX_FORMAT_TRP3F_COL4UB_TEX2F
-    struct_VERTEX_FORMAT_TRP3F_COL4UB_TEX2F.st[0],
-    struct_VERTEX_FORMAT_TRP3F_COL4UB_TEX2F.color.dcolor,
+    struct_VERTEX_FORMAT_TRP3F_COL4UB_TEX2F.st.offsetof,
+    struct_VERTEX_FORMAT_TRP3F_COL4UB_TEX2F.color.dcolor.offsetof,
   },
   {  //VERTEX_FORMAT_P3F_COL4UB_COL4UB
     0,
@@ -367,7 +367,7 @@ static SBufInfoTable[] gBufInfoTable =
     0,
     struct_VERTEX_FORMAT_P3F_N_COL4UB.color.dcolor.offsetof,
     0,
-    normal.x,
+    struct_VERTEX_FORMAT_P3F_N_COL4UB.normal.x.offsetof,
   },
   {  //VERTEX_FORMAT_P3F_N_TEX2F
     struct_VERTEX_FORMAT_P3F_N_TEX2F.st.offsetof,
@@ -399,7 +399,7 @@ static SBufInfoTable[] gBufInfoTable =
     struct_VERTEX_FORMAT_P3F_N_COL4UB_COL4UB_TEX2F.seccolor.dcolor.offsetof,
     struct_VERTEX_FORMAT_P3F_N_COL4UB_COL4UB_TEX2F.normal.x.offsetof,
   },
-};
+];
 void GetVertBufComps(SVertBufComps * Comps, int Format)
 {
   memset(Comps, 0, sizeof(SVertBufComps));

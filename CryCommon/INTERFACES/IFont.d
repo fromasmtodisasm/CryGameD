@@ -1,4 +1,4 @@
-module IFont;
+module ifont;
 
 import Math;
 import Math.Vector2;

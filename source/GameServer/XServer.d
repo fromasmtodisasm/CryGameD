@@ -7,7 +7,7 @@ import XSnapshot;
 import inetwork;					// IServerSlotFactory
 import ScriptObjects.Server;
 import iconsole;
-import XServerSlot;			// XServerSlot
+import GameServer.XServerSlot;			// XServerSlot
 import imarkers;
 import game;
 import ientitysystem;
@@ -37,10 +37,10 @@ enum MAXPLAYERS_LIMIT =					(32);
 alias ITagPoint *[string]	RespawnPointMap;
 
 //////////////////////////////////////////////////////////////////////
-extern(C++, clas) struct BannedID
+extern(C++, class) struct BannedID
 {
 public:
-	this() { memset(vBanID, 0, 64); bSize = 0; };
+	//this() { memset(vBanID, 0, 64); bSize = 0; };
 	this(const ubyte *vByteArr, ubyte bArrSize, ref const string szPlayerName) { memset(vBanID, 0, 64); memcpy(vBanID, vByteArr, min(bArrSize, 64)); szName = szPlayerName; bSize = bArrSize; };
 	this(ref const BannedID NewBannedID) { szName = NewBannedID.szName; memset(vBanID, 0, 64); memcpy(vBanID, NewBannedID.vBanID, NewBannedID.bSize); bSize = NewBannedID.bSize; };
 	~this() {};
@@ -69,7 +69,7 @@ alias BannedIDList.iterator				BannedIDListItor;
 //typedef std::vector<uint>			BannedIPList;
 alias vector!uint			BannedIPList;
 //typedef BannedIPList::iterator				BannedIPListItor;
-alias BannedIPList.iterator				BannedIPListItor;
+//alias BannedIPList.iterator				BannedIPListItor;
 
 
 ///////////////////////////////////////////////
@@ -114,12 +114,12 @@ public:
 	CXServerSlot *GetServerSlotByIP( uint clientIP ) const;
 
 	// IServerSlotFactory /////////////////////////////////
-	override bool CreateServerSlot(IServerSlot *pIServerSlot);
-	override bool GetServerInfoStatus(ref string szServerStatus);
-	override bool GetServerInfoStatus(ref string szName, ref string szGameType, ref string szMap, ref string szVersion, bool *pbPassword, int *piPlayers, int *piMaxPlayers);
-	override bool GetServerInfoRules(ref string szServerRules);
-	override bool GetServerInfoPlayers(string[4] *vszStrings, ref int nStrings);
-	override bool ProcessXMLInfoRequest( const char *sRequest,const char *sRespone,int nResponseMaxLength );
+	/*override*/ bool CreateServerSlot(IServerSlot *pIServerSlot);
+	/*override*/ bool GetServerInfoStatus(ref std_string szServerStatus);
+	/*override*/ bool GetServerInfoStatus(ref std_string szName, ref std_string szGameType, ref std_string szMap, ref std_string szVersion, bool *pbPassword, int *piPlayers, int *piMaxPlayers);
+	/*override*/ bool GetServerInfoRules(ref std_string szServerRules);
+	/*override*/ bool GetServerInfoPlayers(std_string[4] *vszStrings, ref int nStrings);
+	/*override*/ bool ProcessXMLInfoRequest( const char *sRequest,const char *sRespone,int nResponseMaxLength );
 
 	///////////////////////////////////////////////////////
 	// IEntitySystemSink /////////////////////////////////

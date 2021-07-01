@@ -1,4 +1,4 @@
-module ISound;
+module isound;
 
 interface ISound
 {

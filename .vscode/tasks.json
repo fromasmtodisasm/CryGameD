@@ -5,16 +5,16 @@
 			"type": "dub",
 			"run": false,
 			"compiler": "dmd",
-			"archType": "x86",
+			"archType": "x86_mscoff",
 			"buildType": "debug",
-			"configuration": "",
+			"configuration": "Debug",
 			"_generated": true,
 			"problemMatcher": [
 				"$dmd"
 			],
 			"group": "build",
 			"label": "dub-auto: Build crygame",
-			"detail": "dub build --compiler=dmd -a=x86 -b=debug -main -shared"
+			"detail": "dub build --compiler=dmd -a=x86_mscoff -b=debug -c=Debug"
 		}
 	]
 }

@@ -44,6 +44,7 @@ extern interface ICryCharInstance;
 //mixin(GenFWD!("CRendElement"));
 import Renderer.RendElement;
 import isystem;
+
 //mixin(GenFWD!("ShadowMapLightSourceInstance"));
 mixin(GenFWD!("CCObject"));
 mixin(GenFWD!("CTexMan"));
@@ -75,7 +76,7 @@ import Utils.TArray;
 import Math;
 
 import IFont;
-import MeshIdx;
+import Renderer.MeshIdx;
 extern struct ShadowMapLightSourceInstance;
 //DOC-IGNORE-END
 
@@ -1138,7 +1139,7 @@ struct SRendParams
 	//! position of render elements
   Vec3				vPos;
 	//! scale of render elements
-  float				fScale = 1.f;
+  float				fScale = 1;
 	//! angles of the object
   Vec3				vAngles;
 	//! object transformations
@@ -1162,7 +1163,7 @@ struct SRendParams
 	//! object color
 	Vec3     vColor = Vec3(1,1,1);
 	//! object alpha
-  float     fAlpha = 1.f;
+  float     fAlpha = 1;
 	//! force a sort value for render elements
 	int				nSortValue;
 	//! Ambient color for the object
@@ -1191,7 +1192,7 @@ struct SRendParams
 	//! custom shader params
 	TArray!SShaderParam * pShaderParams;
 	//! squared distance to the center of object
-	float fSQDistance = - 1.f;
+	float fSQDistance = - 1;
   //! CCObject custom data
   void * pCCObjCustomData;
 };

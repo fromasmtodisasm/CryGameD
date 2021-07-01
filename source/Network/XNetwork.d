@@ -1,9 +1,8 @@
 module XNetwork;
 
-import IPAddress;				// CIPAddress
 import platform;
+import ipadress;				// CIPAddress
 import Stream;
-import IPAddres;
 import ScriptObjects.ServerSlot;
 import cry_version;
 

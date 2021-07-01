@@ -1,7 +1,6 @@
 module ixgame;
 
 public:
-import igame;
 import isystem;
 import imarkers;
 import Math;

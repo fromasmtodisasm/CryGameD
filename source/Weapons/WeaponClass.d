@@ -18,7 +18,7 @@ module WeaponClass;
 //////////////////////////////////////////////////////////////////////
 
 
-import ScriptObjects.Vector;
+import Script.Vector;
 import FireType;
 import xplayer;
 import Math;
@@ -255,7 +255,7 @@ private:
 	std_string							m_sPickup;				//!< pickup script file representing this weapon class
 	bool								m_bIsLoaded;			//!< is the class loaded
 
-	ref CWeaponSystemEx		m_rWeaponSystem;	//!< reference to the weapon system we belong to
+	/*ref*/ CWeaponSystemEx		m_rWeaponSystem;	//!< reference to the weapon system we belong to
 	IScriptSystem*			m_pScriptSystem;	//!< pointer to script system
 	std_string							m_sName;					//!< the name of the weapon class (e.g. "Machete")
 	IScriptObject*			m_soWeaponClass;
@@ -269,8 +269,8 @@ private:
 	Vec3								m_fpvAngleOffset;
 
 	// script function callback tables
-	HSCRIPTFUNCTION[WeaponFunc_Count]			m_hClientFuncs;
-	HSCRIPTFUNCTION[WeaponFunc_Count]			m_hServerFuncs;
+	HSCRIPTFUNCTION[EWeaponFunc.WeaponFunc_Count]			m_hClientFuncs;
+	HSCRIPTFUNCTION[EWeaponFunc.WeaponFunc_Count]			m_hServerFuncs;
 
 	// rendering related
 	IStatObj.IStatObj*						m_pObject;				//!< third person weapon model
@@ -290,7 +290,7 @@ public:
 	void					CalculateWeaponAngles(BYTE random_seed, Vec3d* pVector, float fAccuracy);
 
 	alias vector!(WeaponParams*) WeaponParamsVec;
-	alias WeaponParamsVec.iterator WeaponParamsVecItor;
+	//alias WeaponParamsVec.iterator WeaponParamsVecItor;
 	WeaponParamsVec m_vFireModes;
 	int						m_nAIMode;					//!< fire mode number which the AI will use for this weapon (-1 if there is no AI mode)
 	char					m_HoldingType;

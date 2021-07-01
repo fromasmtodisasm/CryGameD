@@ -1,2 +1,2 @@
-module Matrix;
+module matrix;
 

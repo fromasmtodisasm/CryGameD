@@ -1,0 +1,6 @@
+module XSurfaceMgr;
+
+class CXSurfaceMgr
+{
+	
+}

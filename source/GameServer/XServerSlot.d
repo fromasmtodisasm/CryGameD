@@ -7,6 +7,7 @@ enum MAX_ENT_DIST_FACTOR = 100;
 extern class CScriptObjectServerSlot;
 
 import XNetworkStats;									// CXNetworkStats
+import XNetwork;
 import inetwork;
 
 extern class CXSnapshot;

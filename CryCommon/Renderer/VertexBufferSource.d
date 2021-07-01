@@ -1,7 +1,7 @@
 module VertexBufferSource;
 import Renderer.IShader;
 import IRenderer;
-import CryHeaders;
+import System.CryHeaders;
 //////////////////////////////////////////////////////////////////////////
 struct VertexBufferSource
 {

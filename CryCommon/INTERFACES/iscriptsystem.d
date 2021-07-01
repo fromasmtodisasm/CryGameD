@@ -1,4 +1,4 @@
-module iscriptsystem;
+module IScriptSystem;
 
 import platform;
 import isystem;

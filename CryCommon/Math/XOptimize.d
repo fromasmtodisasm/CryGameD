@@ -62,22 +62,6 @@ else
 }
 
 //////////////////////////////////////////////////////////////////////
-/*inline */void multMatrices(double[16] dst, const double[16] a, const double[16] b)
-{
-  int i, j;
-
-  for (i = 0; i < 4; i++) {
-    for (j = 0; j < 4; j++) {
-      dst[i * 4 + j] =
-        b[i * 4 + 0] * a[0 * 4 + j] +
-        b[i * 4 + 1] * a[1 * 4 + j] +
-        b[i * 4 + 2] * a[2 * 4 + j] +
-        b[i * 4 + 3] * a[3 * 4 + j];
-    }
-  }
-}
-
-//////////////////////////////////////////////////////////////////////
 // transform vector
 /*inline */void matmult_trans_only(float[3] a, float[4][4] b, float[3] result)
 {

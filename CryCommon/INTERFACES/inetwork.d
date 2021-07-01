@@ -19,7 +19,7 @@ else
 	//#endif
 }
 import Math;					// CVec3
-import IBitStream;				// IBitStream
+import IBitStream : IBitStream;				// IBitStream
 
 //////////////////////////////////////////////////////////////////////
 
@@ -108,7 +108,6 @@ enum NET_NOIMPL= 							MAKE_NRESULT(NET_FAIL, NET_FACILITY_CRYNETWORK, 0x01);
 enum NET_SOCKET_NOT_CREATED= 	MAKE_NRESULT(NET_FAIL, NET_FACILITY_CRYNETWORK, 0x02);
 
 public import core.stdcpp.xutility;
-public import core.stdcpp.utility;
 public import core.stdcpp.vector;
 
 enum DEFAULT_SERVERPORT= 				49001;
@@ -137,7 +136,7 @@ extern(C++, class) struct CIPAddress
 
 }
 public import System.Stream;
-import ISystem;
+import isystem;
 
 //////////////////////////////////////////////////////////////////////
 /*! class factory of the Network module
@@ -641,4 +640,4 @@ interface IServer
 	EMPServerType GetServerType();
 };
 
-extern(C) export INetwork *CreateNetwork(ISystem.ISystem *pSystem);
+extern(C) export INetwork *CreateNetwork(ISystem *pSystem);
