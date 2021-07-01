@@ -112,7 +112,11 @@ struct GameEvent
 	~this()
 	{
 		if (--pEvent.nRefCount <= 0)
-			delete pEvent;
+			{
+
+			}
+			//FIXME:
+			//delete pEvent;
 	}
 	//FIXME:
 	//ref GameEvent operator=(ref const GameEvent src)

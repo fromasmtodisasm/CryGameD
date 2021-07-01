@@ -150,7 +150,10 @@ interface ICharInstanceSink
 
 }
 
-extern interface ICryCharInstance;
+private interface ICryCharInstance
+{
+
+}
 import istatobj;
 import Stream;
 
@@ -217,19 +220,24 @@ public:
 	//}
 
 	// rendering related
-	IStatObj* GetObject() const
+	IStatObj GetObject() const
 	{
-		return m_pObject;
+		//FIXME:
+		//return m_pObject;
+		return IStatObj.init;
 	}
 
-	ICryCharInstance* GetCharacter() const
+	ICryCharInstance GetCharacter() const
 	{
-		return m_pCharacter;
+		//FIXME:
+		//return m_pCharacter;
+		return ICryCharInstance.init;
 	}
 
-	IStatObj* GetMuzzleFlash() const
+	IStatObj GetMuzzleFlash() const
 	{
-		return m_pMuzzleFlash;
+		//return m_pMuzzleFlash;
+		return IStatObj.init;
 	}
 
 	ref const(/*std_*/string) GetBindBone() const

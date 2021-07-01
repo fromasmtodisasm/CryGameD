@@ -145,9 +145,9 @@ interface IGameMods
 {
 	// Returns description of the currently active game mode.
 	// @returns NULL if the game mod is not found.
-	immutable(SGameModDescription*) GetModDescription( const char *sModName ) immutable;
+	const(SGameModDescription*) GetModDescription( const char *sModName ) immutable;
 	// @returns name of the mod currently active, never returns 0
-	immutable(char*) GetCurrentMod() immutable;
+	const(char*) GetCurrentMod() immutable;
 	// Sets the currently active game mod.
 	// @returns true if Mod is successfully set, false if Mod set failed.
 	bool SetCurrentMod( const char *sModName,bool bNeedsRestart=false );

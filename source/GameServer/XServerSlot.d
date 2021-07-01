@@ -151,7 +151,7 @@ public:
 	{
 		//FIXME:
 		//return m_ScriptObjectServerSlot.GetScriptObject();
-		return null;
+		return IScriptObject.init;
 	}
 	//! update the server slot stuff
 	void Update(bool send_snap, bool send_events);
@@ -177,7 +177,9 @@ public:
 	//!
 	float GetPlayTime()
 	{
-		return m_pTimer.GetCurrTime() - m_fPlayTime;
+		//FIXME:
+		//return m_pTimer.GetCurrTime() - m_fPlayTime;
+		return float.init;
 	}
 	//! \return amount of bytes allocated by this instance and it's childs 
 	uint MemStats();
